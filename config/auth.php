@@ -40,6 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'company' => [
+            'driver' => 'session',
+            'provider' => 'companies',
+        ],
+        'talent' => [
+            'driver' => 'session',
+            'provider' => 'talents',
+        ],
+
     ],
 
     /*
@@ -64,6 +73,16 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        'companies' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\UserCompany::class,
+        ],
+
+        'talents' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\UserTalent::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

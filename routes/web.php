@@ -3,6 +3,10 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Student\AboutmeController;
+use App\Http\Controllers\Student\AchivementController;
+use App\Http\Controllers\Student\EducationController;
+use App\Http\Controllers\TalentViewController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,17 +32,46 @@ use Inertia\Inertia;
 // });
 
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
+Route::get('/talent', [TalentViewController::class, 'talent'])->name('talent');
+
+
+// Route::get('/competency', [AchivementController::class, 'index'])->name('competency');
+
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/home', [AuthController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/home', [AuthController::class, 'index'])->name('home');
+    Route::get('/aboutme', [AboutmeController::class, 'index'])->name('aboutme');
+    Route::get('education', [EducationController::class, 'index'])->name('education');
+    Route::get('/education/add', [EducationController::class, 'create'])->name('education.create');
+    Route::post('/education/store', [EducationController::class, 'store'])->name('education.store');
+    Route::post('/education/update', [EducationController::class, 'update'])->name('education.update');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Route::group(['prefix' => 'company,talent'], function () {
+
+//     Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+//         ->middleware('guest')
+//         ->name('login');
+
+//     Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+//         ->middleware('guest');
+
+//     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+//         ->middleware('auth:admin')
+//         ->name('logout');
+
+//     Route::group(['middleware' => 'auth:admin'], function () {
+//     });
+// });
 
 require __DIR__ . '/auth.php';

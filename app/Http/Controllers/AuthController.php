@@ -10,9 +10,9 @@ class AuthController extends Controller
 {
     public function index()
     {
-        if (Auth::id()) {
-
-            $role = Auth()->user()->role;
+        if (Auth::check()) {
+            $user = Auth::user();
+            $role = $user->role;
 
             if ($role == 'talent') {
                 return Inertia::render('Talent/TalentIndex');
@@ -22,5 +22,8 @@ class AuthController extends Controller
                 return Inertia::render('Admin/AdminIndex');
             }
         }
+
+        // If the user is not authenticated, you can redirect them to the login page or perform any other desired action.
+        return redirect()->route('login');
     }
 }

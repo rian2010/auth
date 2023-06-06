@@ -3,7 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Student\Education;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -24,6 +27,21 @@ class User extends Authenticatable
         'password',
         'role',
     ];
+
+    public function talent()
+    {
+        return $this->hasOne(UserTalent::class);
+    }
+
+    public function company()
+    {
+        return $this->hasOne(UserCompany::class);
+    }
+
+    public function education(): HasMany
+    {
+        return $this->hasMany(Education::class, "user_id");
+    }
 
     /**
      * The attributes that should be hidden for serialization.
