@@ -21,8 +21,9 @@ export default function Authenticated({ user, header, children }) {
       clearInterval(timer);
     };
   }, []);
+
   return (
-    <div className=" flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen bg-gray-100">
       <nav className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
@@ -41,29 +42,12 @@ export default function Authenticated({ user, header, children }) {
                   Dashboard
                 </NavLink>
               </div>
-
               <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <NavLink
-                  href={route("education")}
-                  active={route().current("education")}
+                  href={route("vacancy.index")}
+                  active={route().current("vacancy.index")}
                 >
-                  Education
-                </NavLink>
-              </div>
-              <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <NavLink
-                  href={route("achivement.index")}
-                  active={route().current("achivement.index")}
-                >
-                  Achivement
-                </NavLink>
-              </div>
-              <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <NavLink
-                  href={route("experience.index")}
-                  active={route().current("experience.index")}
-                >
-                  Experience
+                  Vacancy
                 </NavLink>
               </div>
             </div>
@@ -213,7 +197,7 @@ export default function Authenticated({ user, header, children }) {
 
       <main className="flex-grow py-6 px-4 sm:px-6 lg:px-8">{children}</main>
 
-      <footer className="bg-blue-500 py-4 px-4 sm:px-6 lg:px-8  bottom-0">
+      <footer className="bg-blue-500 py-4 px-4 sm:px-6 lg:px-8 sticky bottom-0">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-sm text-white">
             &copy; {new Date().getFullYear()} Your Website. All rights reserved.

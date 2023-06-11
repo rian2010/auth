@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
-            $table->string('job_desk');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('jobdesk');
             $table->string('type');
-            $table->integer('year_start');
-            $table->integer('year_end');
+            $table->date('year_start');
+            $table->date('year_end');
             $table->string('address');
             $table->string('company');
             $table->string('position');

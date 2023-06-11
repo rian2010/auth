@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Student\Education;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -34,4 +36,8 @@ class UserTalent extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function education(): HasMany
+    {
+        return $this->hasMany(Education::class, "user_id");
+    }
 }

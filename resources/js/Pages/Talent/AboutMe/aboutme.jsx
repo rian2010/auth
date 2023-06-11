@@ -46,7 +46,7 @@ export default function Dashboard({ auth }) {
     <UserDashboardLayout
       user={auth.user}
       header={
-        <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 className="font-semibold text-xl text-white leading-tight">
           About Me
         </h2>
       }
@@ -79,8 +79,8 @@ export default function Dashboard({ auth }) {
                 </thead>
                 <tbody>
                   <tr className="bg-gray-200">
-                    <td className="py-2 text-center">95%</td>
-                    <td className="py-2 text-center">Computer Science</td>
+                    <td className="py-2 text-center"></td>
+                    <td className="py-2 text-center"></td>
                     <td className="py-2 text-center">
                       <button className="mr-2">
                         <PencilIcon className="h-5 w-5 text-gray-500" />

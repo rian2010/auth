@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\EducationCollection;
 use App\Models\Student\Education;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,13 +14,17 @@ class EducationController extends Controller
 {
     public function index()
     {
-        return Inertia::render(
-            'Talent/education/education',
-            [
-                'education' => Education::with('user:id,name')->latest()->get(),
-            ]
-        );
+        $user = Auth::user();
+        $education = Education::where('user_id', $user->id)
+            ->orderByDesc('id')
+            ->get();
+
+
+        return Inertia::render('Talent/education/education', [
+            'education' => $education,
+        ]);
     }
+
 
     public function create()
     {
@@ -36,22 +41,22 @@ class EducationController extends Controller
             'last_education' => 'required|string|max:100',
         ]);
 
-        $user = auth()->user(); // Get the authenticated user
+        // $user = auth()->user(); // Get the authenticated user
 
-        $user->education()->create($validated);
+        $request->user()->education()->create($validated);
 
         return redirect(route('education'));
     }
 
-    public function destroy(): RedirectResponse
+    public function destroy(Education $education): RedirectResponse
 
     { {
             //
-            $this->authorize('delete', $chirp);
+            $this->authorize('delete', $education);
 
-            $chirp->delete();
+            $education->delete();
 
-            return redirect(route('chirps.index'));
+            return redirect(route('education.index'));
         }
     }
 }

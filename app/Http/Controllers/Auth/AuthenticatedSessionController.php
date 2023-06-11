@@ -30,30 +30,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        $request->authenticate();
 
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }
+        $request->session()->regenerate();
 
-        if (Auth::guard('company')->attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }
-        if (Auth::guard('talent')->attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
 

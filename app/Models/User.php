@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Company\Vacancy;
 use App\Models\Student\Education;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -21,7 +22,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nim',
         'name',
         'email',
         'password',
@@ -42,6 +42,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Education::class, "user_id");
     }
+
+    public function achivement(): HasMany
+    {
+        return $this->hasMany(Achivement::class);
+    }
+    public function experience(): HasMany
+    {
+        return $this->hasMany(Experience::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

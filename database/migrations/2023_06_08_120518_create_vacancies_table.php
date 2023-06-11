@@ -11,8 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('talent_profiles', function (Blueprint $table) {
+        Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('jobdesk');
+            $table->string('job_offer');
+            $table->string('requirement');
+            $table->string('postion');
+            $table->integer('salary');
+            $table->string('placement_location');
             $table->timestamps();
         });
     }
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('talent_profiles');
+        Schema::dropIfExists('vacancies');
     }
 };

@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CompanyViewController;
+use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Student\AboutmeController;
 use App\Http\Controllers\Student\AchivementController;
 use App\Http\Controllers\Student\EducationController;
 use App\Http\Controllers\TalentViewController;
+use App\Http\Controllers\VacancyController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,7 +35,8 @@ use Inertia\Inertia;
 // });
 
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
-Route::get('/talent', [TalentViewController::class, 'talent'])->name('talent');
+Route::get('/company', [CompanyViewController::class, 'index'])->name('company');
+Route::get('/vacancy', [LandingpageController::class, 'index'])->name('vacancy');
 
 
 // Route::get('/competency', [AchivementController::class, 'index'])->name('competency');
@@ -42,13 +46,21 @@ Route::get('/talent', [TalentViewController::class, 'talent'])->name('talent');
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/home', [AuthController::class, 'index'])->name('home');
-    Route::get('/aboutme', [AboutmeController::class, 'index'])->name('aboutme');
+Route::get('/home', [AuthController::class, 'index'])->name('home');
+
+Route::middleware(['auth', 'talent'])->prefix('talent')->group(function () {
     Route::get('education', [EducationController::class, 'index'])->name('education');
     Route::get('/education/add', [EducationController::class, 'create'])->name('education.create');
     Route::post('/education/store', [EducationController::class, 'store'])->name('education.store');
     Route::post('/education/update', [EducationController::class, 'update'])->name('education.update');
+    Route::post('/education/destroy', [EducationController::class, 'destroy'])->name('education.destroy');
+    Route::resource('/achivement', AchivementController::class);
+    Route::resource('/experience', ExperienceController::class);
+});
+
+Route::middleware(['auth', 'company'])->prefix('company')->group(function () {
+    Route::get('vacancy', [VacancyController::class, 'index'])->name('vacancy.index');
+    Route::post('vacancy/store', [VacancyController::class, 'store'])->name('vacancy.store');
 });
 
 Route::middleware('auth')->group(function () {
