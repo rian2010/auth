@@ -8,10 +8,9 @@ export default function Landing(props) {
   return (
     <div>
       <Head title={props.title} />
-      <Navbar user={props.auth.user} />
-      <div>
+      <LandingPageLayout>
         <Hero />
-      </div>
+      </LandingPageLayout>
     </div>
   );
 }

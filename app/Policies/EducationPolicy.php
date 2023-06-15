@@ -45,6 +45,7 @@ class EducationPolicy
      */
     public function delete(User $user, Education $education): bool
     {
+        // dd($user, $education);
         return $this->update($user, $education);
     }
 

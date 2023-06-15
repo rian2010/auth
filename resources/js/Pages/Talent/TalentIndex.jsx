@@ -1,10 +1,13 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, Link } from "@inertiajs/react";
 import UserDashboardLayout from "@/Layouts/UserDashboardLayout";
 import Profile from "@/Images/wallpaper.jpg";
 import { AcademicCapIcon } from "@heroicons/react/24/solid";
+import Education from "@/Components/TalentComponent/EducationIndex";
+import Icon from "@/Images/icon.png";
+import Kampus from "@/Images/Kampus.jpg";
 
-export default function Dashboard({ auth, education }) {
+export default function Dashboard({ auth, education, ...props }) {
   return (
     <UserDashboardLayout
       user={auth.user}
@@ -75,14 +78,14 @@ export default function Dashboard({ auth, education }) {
               <div
                 className="absolute top-0 left-0 right-0 h-16 rounded-t-lg"
                 style={{
-                  backgroundImage: `url(${Profile})`,
+                  backgroundImage: `url(${Kampus})`,
                   backgroundPosition: "center",
                   backgroundSize: "cover",
                 }}
               ></div>
             </div>
             <img
-              src={Profile}
+              src={Icon}
               alt="Profile Picture"
               className="h-16 w-16 rounded-full bg-gray-200 mx-auto mt-7 relative z-10"
             />
@@ -91,50 +94,17 @@ export default function Dashboard({ auth, education }) {
               <h2 className="text-center text-base text-gray-400 mt-2">
                 Teknologi Rekayasa Perangkat Lunak
               </h2>
-              <div className="flex justify-center">
-                <button className="bg-indigo-500 w-11/12 py-1.5 hover:bg-blue-700 text-white font-bold mt-4  rounded">
-                  Profile
-                </button>
-              </div>
-            </div>
-          </div>
 
-          <div className="md:col-span-3">
-            <div className="py-8">
-              <div className="relative overflow-x-auto rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-gray-700 bg-white dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                      <th scope="col" className="px-6 py-3" colSpan="6">
-                        <h3 className="text-lg font-semibold leading-6 text-gray-900 mb-4 inline-flex items-center py-4">
-                          <AcademicCapIcon className="h-6 w-6 text-gray-500 mr-2" />
-                          Education
-                        </h3>
-                      </th>
-                    </tr>
-                    {/* <tr>
-                      <th className="py-2 text-center text-base">Mark</th>
-                      <th className="py-2 text-center text-base">Major</th>
-                      <th className="py-2 text-center text-base">Year Start</th>
-                      <th className="py-2 text-center text-base">Year End</th>
-                      <th className="py-2 text-center text-base">
-                        Last Education
-                      </th>
-                    </tr> */}
-                  </thead>
-                  {/* <tbody>
-                    <tr className="bg-gray-200">
-                      <td className="py-3 text-center text-base"></td>
-                      <td className="py-3 text-center text-base"></td>
-                      <td className="py-3 text-center text-base"></td>
-                      <td className="py-3 text-center text-base"></td>
-                      <td className="py-3 text-center text-base"></td>
-                    </tr>
-                  </tbody> */}
-                </table>
-              </div>
+              <Link href={route("generate.index")}>
+                <div className="flex justify-center">
+                  <button className="bg-indigo-500 w-11/12 py-1.5 hover:bg-blue-700 text-white font-bold mt-4  rounded">
+                    Profile
+                  </button>
+                </div>
+              </Link>
             </div>
           </div>
+          {/* <Education education={education} /> */}
         </div>
       </div>
     </UserDashboardLayout>

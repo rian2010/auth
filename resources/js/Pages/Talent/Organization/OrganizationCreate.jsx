@@ -1,31 +1,26 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link, router, useForm } from "@inertiajs/react"; // Import the Link component
 import UserDashboardLayout from "@/Layouts/UserDashboardLayout";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Dashboard({ auth, props }) {
+export default function Dashboard({ auth }) {
   const { data, setData, post, processing, reset, errors } = useForm({
-    mark: "",
-    major: "",
+    name_organization: "",
     year_start: "",
     year_end: "",
-    last_education: "",
+    title: "",
+    description_experience: "",
   });
 
   const submit = (e) => {
     e.preventDefault();
-    post(route("education.store"), { onSuccess: () => reset() });
+    post(route("organization.store"), { onSuccess: () => reset() });
   };
-
-  console.log("props last:", props);
 
   return (
     <UserDashboardLayout
       user={auth.user}
       header={
         <h2 className="font-semibold text-xl text-white leading-tight">
-          Dashboard
+          Organization Experience
         </h2>
       }
     >
@@ -34,54 +29,35 @@ export default function Dashboard({ auth, props }) {
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-            <form className="rounded-lg" onSubmit={submit}>
+            <form onSubmit={submit}>
               <div className="space-y-12">
-                <div className="border-b border-gray-900/10 pb-12">
+                <div className="border-b pb-12">
                   <h2 className="text-base font-semibold leading-7 text-gray-900">
-                    Add Education
+                    Organization Experience
                   </h2>
 
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div className="sm:col-span-3">
+                    <div className="sm:col-span-2">
                       <label
-                        htmlFor="first-name"
+                        htmlFor="organization-name"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Mark
+                        Organization Name
                       </label>
                       <div className="mt-2">
                         <input
+                          value={data.name_organization}
                           type="text"
-                          name="first-name"
-                          id="first-name"
-                          autoComplete="given-name"
-                          onChange={(e) => setData("mark", e.target.value)}
+                          name="organization-name"
+                          id="organization-name"
+                          onChange={(e) =>
+                            setData("name_organization", e.target.value)
+                          }
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
-
-                    <div className="sm:col-span-3">
-                      <label
-                        htmlFor="last-name"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        Major
-                      </label>
-                      <div className="mt-2">
-                        <input
-                          type="text"
-                          name="last-name"
-                          id="last-name"
-                          autoComplete="family-name"
-                          onChange={(e) => setData("major", e.target.value)}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div className="sm:col-span-3">
+                    <div className="sm:col-span-2">
                       <label
                         htmlFor="year-start"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -90,6 +66,7 @@ export default function Dashboard({ auth, props }) {
                       </label>
                       <div className="mt-2">
                         <input
+                          value={data.year_start}
                           type="date"
                           name="year-start"
                           id="year-start"
@@ -100,8 +77,7 @@ export default function Dashboard({ auth, props }) {
                         />
                       </div>
                     </div>
-
-                    <div className="sm:col-span-3">
+                    <div className="sm:col-span-2">
                       <label
                         htmlFor="year-end"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -110,6 +86,7 @@ export default function Dashboard({ auth, props }) {
                       </label>
                       <div className="mt-2">
                         <input
+                          value={data.year_end}
                           type="date"
                           name="year-end"
                           id="year-end"
@@ -118,42 +95,66 @@ export default function Dashboard({ auth, props }) {
                         />
                       </div>
                     </div>
-                    <div className="sm:col-span-3">
+                    <div className="col-span-full">
                       <label
-                        htmlFor="year-start"
+                        htmlFor="title"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Last Education
+                        Title
                       </label>
                       <div className="mt-2">
                         <input
+                          value={data.title}
                           type="text"
-                          name="year-start"
-                          id="year-start"
-                          onChange={(e) =>
-                            setData("last_education", e.target.value)
-                          }
+                          name="title"
+                          id="title"
+                          autoComplete="title"
+                          onChange={(e) => setData("title", e.target.value)}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
+                    <div className="col-span-full">
+                      <label
+                        htmlFor="experience-description"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Experience description
+                      </label>
+                      <div className="mt-2">
+                        <textarea
+                          value={data.description_experience}
+                          id="experience-description"
+                          name="experience-description"
+                          rows={6}
+                          onChange={(e) =>
+                            setData("description_experience", e.target.value)
+                          }
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                      <p className="mt-3 text-sm leading-6 text-gray-600">
+                        Write About Your Organization Experience
+                      </p>
+                    </div>
+                    <div className="mt-6 flex items-center justify-end sm:col-span-full">
+                      <Link
+                        href={route("organization.index")}
+                        type="button"
+                        className="text-sm font-semibold leading-6 text-gray-900 mr-4"
+                      >
+                        Cancel
+                      </Link>
+                      <button
+                        disabled={processing}
+                        type="submit"
+                        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      >
+                        Save
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="mt-6 flex items-center justify-end gap-x-6">
-                <Link
-                  href="/education"
-                  className="text-sm font-semibold leading-6 text-gray-900"
-                >
-                  Back
-                </Link>
-                <button
-                  type="submit"
-                  disabled={processing}
-                  className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Submit
-                </button>
               </div>
             </form>
           </div>

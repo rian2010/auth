@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Logo from "@/Images/640px-Logo_Politeknik_Negeri_Batam.png";
 import { Head, Link } from "@inertiajs/react";
+import NavLink from "./NavLink";
 
 const Navbar = ({ user }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -102,36 +103,42 @@ const Navbar = ({ user }) => {
             >
               <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>
-                  <Link href={route("landingpage")}>
-                    <a className="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white">
+                  <NavLink href={route("landingpage")}>
+                    <a
+                      className="block py-2 pl-3 pr-4 lg:p-0 hover:text-primary-700 dark:text-white"
+                      active={route().current("landingpage")}
+                    >
                       Home
                     </a>
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li>
-                  <a
+                  <NavLink
                     href={route("vacancy")}
                     className="block py-2 pl-3 pr-4 lg:p-0 hover:text-primary-700 dark:text-white"
+                    active={route().current("vacancy")}
                   >
                     Vacancy
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
+                  <NavLink
                     href="#"
                     className="block py-2 pl-3 pr-4 lg:p-0 hover:text-primary-700 dark:text-white"
+                    active={route().current("talent")}
                   >
                     Talent
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
+                  <NavLink
                     href={route("company")}
                     className="block py-2 pl-3 pr-4 lg:p-0 hover:text-primary-700 dark:text-white"
+                    active={route().current("compant")}
                   >
                     Company
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>

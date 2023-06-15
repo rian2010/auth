@@ -1,6 +1,16 @@
 import React from "react";
 import LandingPageLayout from "@/Layouts/LandingPageLayout";
+import Hero from "@/Components/Hero";
+import Content from "@/Components/Content";
 
-export default function Company() {
-  return <LandingPageLayout>Company</LandingPageLayout>;
+function Company() {
+  return (
+    <LandingPageLayout>
+      <div>
+        <Content />
+      </div>
+    </LandingPageLayout>
+  );
 }
+
+export default Company;

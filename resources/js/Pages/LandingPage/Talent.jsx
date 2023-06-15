@@ -5,8 +5,9 @@ import LandingPageLayout from "@/Layouts/LandingPageLayout";
 
 export default function Talent() {
   return (
-    <LandingPageLayout>
+    <div>
+      <Navbar user={props.auth.user} />
       <TalentDescription />
-    </LandingPageLayout>
+    </div>
   );
 }

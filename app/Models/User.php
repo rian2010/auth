@@ -4,7 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Models\Company\Vacancy;
+use App\Models\Vacancy;
 use App\Models\Student\Education;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -30,7 +30,7 @@ class User extends Authenticatable
 
     public function talent()
     {
-        return $this->hasOne(UserTalent::class);
+        return $this->hasOne(Student::class);
     }
 
     public function company()
@@ -52,6 +52,20 @@ class User extends Authenticatable
         return $this->hasMany(Experience::class);
     }
 
+    public function vacancy(): HasMany
+    {
+        return $this->hasMany(Vacancy::class);
+    }
+
+    public function chirps(): HasMany
+    {
+        return $this->hasMany(Chirp::class);
+    }
+
+    public function organization(): HasMany
+    {
+        return $this->hasMany(Organization::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

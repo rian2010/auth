@@ -44,8 +44,8 @@ export default function Authenticated({ user, header, children }) {
 
               <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <NavLink
-                  href={route("education")}
-                  active={route().current("education")}
+                  href={route("education.index")}
+                  active={route().current("education.index")}
                 >
                   Education
                 </NavLink>
@@ -55,7 +55,7 @@ export default function Authenticated({ user, header, children }) {
                   href={route("achivement.index")}
                   active={route().current("achivement.index")}
                 >
-                  Achivement
+                  Achievement
                 </NavLink>
               </div>
               <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -64,6 +64,14 @@ export default function Authenticated({ user, header, children }) {
                   active={route().current("experience.index")}
                 >
                   Experience
+                </NavLink>
+              </div>
+              <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <NavLink
+                  href={route("organization.index")}
+                  active={route().current("Organization.index")}
+                >
+                  Organization
                 </NavLink>
               </div>
             </div>
@@ -109,8 +117,8 @@ export default function Authenticated({ user, header, children }) {
                   </Dropdown.Trigger>
 
                   <Dropdown.Content>
-                    <Dropdown.Link href={route("profile.edit")}>
-                      Settings
+                    <Dropdown.Link href={route("talentprofile.index")}>
+                      Profile
                     </Dropdown.Link>
                     <Dropdown.Link
                       href={route("logout")}

@@ -73,9 +73,11 @@ export default function Dashboard({ auth, education, ...props }) {
                           <button className="mr-2">
                             <PencilIcon className="h-5 w-5 text-gray-500" />
                           </button>
-                          <button>
-                            <TrashIcon className="h-5 w-5 text-gray-500" />
-                          </button>
+                          <Link>
+                            <button>
+                              <TrashIcon className="h-5 w-5 text-gray-500" />
+                            </button>
+                          </Link>
                         </td>
                       </tr>
                     ))}

@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class EducationController extends Controller
 {
@@ -25,11 +26,12 @@ class EducationController extends Controller
         ]);
     }
 
-
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Talent/education/file');
     }
+
+
 
     public function store(Request $request): RedirectResponse
     {
@@ -45,18 +47,19 @@ class EducationController extends Controller
 
         $request->user()->education()->create($validated);
 
-        return redirect(route('education'));
+        return redirect(route('education.index'));
     }
 
-    public function destroy(Education $education): RedirectResponse
+    public function destroy(Request $request, Education $education): RedirectResponse
+    {
 
-    { {
-            //
-            $this->authorize('delete', $education);
+        $education = Education::find($request->id);
 
+        if ($education) {
             $education->delete();
-
-            return redirect(route('education.index'));
+            return redirect()->route('education')->with('message', 'Data berhasil dihapus');
+        } else {
+            return redirect()->route('education')->with('error', 'Data tidak ditemukan');
         }
     }
 }

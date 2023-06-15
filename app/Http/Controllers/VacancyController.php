@@ -2,35 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company\Vacancy;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Vacancy;
+// use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Inertia\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class VacancyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
-        $user = Auth::user();
 
+        $user = Auth::user();
         $vacancy = Vacancy::where('user_id', $user->id)
-            ->with('user:id,name')
+            ->orderByDesc('id')
             ->get();
         return Inertia::render('Company/Vacancy/VacancyIndex', [
             'vacancy' => $vacancy
         ]);
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
-        //
+        return Inertia::render('Company/Vacancy/VacancyCreate');
     }
 
     /**
@@ -39,12 +43,14 @@ class VacancyController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'jobdesk' => 'required|string|max:100',
-            'job_offer' => 'required|string|max:100',
-            'requirement' => 'required|string|max:100',
-            'position' => 'required|string|max:100',
-            'salary' => 'required|integer|max:100',
-            'placement_location' => 'required|string|max:100',
+            'position' => 'required|string|max:255',
+            'salary' => 'required|integer|min:6',
+            'registration_duration' => 'required|date|max:100',
+            'job_offer' => 'required|string|max:255',
+            'experience_level' => 'required|string|max:255',
+            'placement_location' => 'required|string|max:255',
+            'job_desk' => 'required|string|max:255',
+            'requirement' => 'required|string|max:255',
         ]);
 
         $request->user()->vacancy()->create($validated);
@@ -52,10 +58,11 @@ class VacancyController extends Controller
         return redirect(route('vacancy.index'));
     }
 
+
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Vacancy $vacancy)
     {
         //
     }
@@ -63,7 +70,7 @@ class VacancyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Vacancy $vacancy)
     {
         //
     }
@@ -71,7 +78,7 @@ class VacancyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Vacancy $vacancy)
     {
         //
     }
@@ -79,7 +86,7 @@ class VacancyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Vacancy $vacancy)
     {
         //
     }

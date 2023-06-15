@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('jobdesk');
-            $table->string('job_offer');
-            $table->string('requirement');
-            $table->string('postion');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('position');
             $table->integer('salary');
+            $table->date('registration_duration');
+            $table->string('job_offer');
+            $table->string('experience_level');
             $table->string('placement_location');
+            $table->string('job_desk');
+            $table->string('requirement');
             $table->timestamps();
         });
     }
