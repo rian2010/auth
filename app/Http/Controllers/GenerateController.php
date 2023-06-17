@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achivement;
+use App\Models\Experience;
+use App\Models\Organization;
+use App\Models\Student\Education;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -13,7 +18,29 @@ class GenerateController extends Controller
      */
     public function index(): Response
     {
-        return Inertia::render('Talent/GenerateCV/generate');
+        $user = Auth::user();
+        $education = Education::where('user_id', $user->id)
+            ->orderByDesc('id')
+            ->get();
+
+        $achivement = Achivement::where('user_id', $user->id)
+            ->with('user:id,name')
+            ->get();
+        $experience = Experience::where('user_id', $user->id)
+            ->orderByDesc('id')
+            ->get();
+        $organization = Organization::where('user_id', $user->id)
+            ->orderByDesc('id')
+            ->get();
+
+        return Inertia::render('Talent/GenerateCV/generate', [
+            'education' => $education,
+            'achivement' => $achivement,
+            'experience' => $experience,
+            'organization' => $organization
+
+
+        ]);
     }
 
     /**

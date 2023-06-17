@@ -13,8 +13,8 @@ class Student extends Model
         'nim', 'prodi', 'address', 'phone_number', 'skill', 'image'
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

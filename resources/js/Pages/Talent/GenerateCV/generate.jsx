@@ -4,9 +4,23 @@ import { useForm, usePage } from "@inertiajs/react";
 import { PrinterIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import Poltek from "@/Images/rename.png";
+import {
+  AcademicCapIcon,
+  ArrowUturnLeftIcon,
+  TrophyIcon,
+} from "@heroicons/react/24/solid";
 
-export default function generate(auth) {
+export default function generate({}) {
   const user = usePage().props.auth.user;
+  const { education } = usePage().props;
+  const { achivement } = usePage().props;
+  const { experience } = usePage().props;
+  const { organization } = usePage().props;
+
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   const { data, setData, patch, errors, processing, recentlySuccessful } =
     useForm({
       name: user.name,
@@ -57,6 +71,14 @@ export default function generate(auth) {
           } sm:rounded-lg p-6`}
         >
           <div className="flex flex-col items-center">
+            <button
+              className="absolute top-0 left-0 mt-2 ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center print:hidden"
+              onClick={handleGoBack}
+            >
+              <ArrowUturnLeftIcon className="h-5 w-5 mr-2" />
+              Back
+            </button>
+
             {isPrinting ? null : (
               <div
                 className="relative w-full h-16 rounded-t-lg mb-4"
@@ -64,6 +86,7 @@ export default function generate(auth) {
                   backgroundImage: `url(${Kampus})`,
                   backgroundPosition: "center",
                   backgroundSize: "cover",
+                  width: "100%",
                 }}
               ></div>
             )}
@@ -129,14 +152,156 @@ export default function generate(auth) {
             </dl>
           </div>
         </div>
+        <div className="mt-8 md:ml-4 w-11/12 sm:w-10/12 md:w-8/12">
+          <div className="bg-white overflow-hidden shadow-lg sm:rounded-lg p-6">
+            <h3 className="text-lg font-semibold leading-6 text-gray-900 mb-4 flex items-center">
+              <AcademicCapIcon className="h-6 w-6 text-gray-500 mr-2" />
+              Education
+            </h3>
+            <div className="p-4">
+              {/* Add padding classes here */}
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th className="py-2 text-center">Mark</th>
+                    <th className="py-2 text-center">Major</th>
+                    <th className="py-2 text-center">Year Start</th>
+                    <th className="py-2 text-center">Year End</th>
+                    <th className="py-2 text-center">Last Education</th>
+                  </tr>
+                </thead>
+                <tbody className="w-full max-w-full">
+                  {education.map((item) => (
+                    <tr key={item.id} className="bg-gray-200">
+                      <td className="py-2 text-center">{item.mark}</td>
+                      <td className="py-2 text-center">{item.major}</td>
+                      <td className="py-2 text-center">{item.year_start}</td>
+                      <td className="py-2 text-center">{item.year_end}</td>
+                      <td className="py-2 text-center">
+                        {item.last_education}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 md:ml-4 w-11/12 sm:w-10/12 md:w-8/12">
+          <div className="bg-white overflow-hidden shadow-lg sm:rounded-lg p-6">
+            <h3 className="text-lg font-semibold leading-6 text-gray-900 mb-4 flex items-center">
+              <TrophyIcon className="h-6 w-6 text-gray-500 mr-2" />
+              Achievement
+            </h3>
+            <div className="p-4">
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th className="py-2 text-center">Position</th>
+                    <th className="py-2 text-center">Achivement Date</th>
+                    <th className="py-2 text-center">Description</th>
+                  </tr>
+                </thead>
+                <tbody className="w-full max-w-full">
+                  {achivement.map((item) => (
+                    <tr key={item.id} className="bg-gray-200">
+                      <td className="py-2 text-center">{item.position}</td>
+                      <td className="py-2 text-center">
+                        {item.achivement_date}
+                      </td>
+                      <td className="py-2 text-center">{item.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div className="mt-8 md:ml-4 w-11/12 sm:w-10/12 md:w-8/12">
+          <div className="bg-white overflow-hidden shadow-lg sm:rounded-lg p-6">
+            <h3 className="text-lg font-semibold leading-6 text-gray-900 mb-4 flex items-center">
+              <TrophyIcon className="h-6 w-6 text-gray-500 mr-2" />
+              Achievement
+            </h3>
+            <div className="p-4">
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th className="py-2 text-center">JobDesk</th>
+                    <th className="py-2 text-center">Type</th>
+                    <th className="py-2 text-center">Year Start</th>
+                    <th className="py-2 text-center">Year End</th>
+                    <th className="py-2 text-center">Address</th>
+                    <th className="py-2 text-center">Company</th>
+                    <th className="py-2 text-center">Positions</th>
+                  </tr>
+                </thead>
+                <tbody className="w-full max-w-full">
+                  {experience.map((item) => (
+                    <tr key={item.id} className="bg-gray-200">
+                      <td className="py-2 text-center">{item.jobdesk}</td>
+                      <td className="py-2 text-center">{item.type}</td>
+                      <td className="py-2 text-center">{item.year_start}</td>
+                      <td className="py-2 text-center">{item.year_end}</td>
+                      <td className="py-2 text-center">{item.address}</td>
+                      <td className="py-2 text-center">{item.company}</td>
+                      <td className="py-2 text-center">{item.position}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div className="mt-8 md:ml-4 w-11/12 sm:w-10/12 md:w-8/12">
+          <div className="bg-white overflow-hidden shadow-lg sm:rounded-lg p-6">
+            <h3 className="text-lg font-semibold leading-6 text-gray-900 mb-4 flex items-center">
+              <TrophyIcon className="h-6 w-6 text-gray-500 mr-2" />
+              Achievement
+            </h3>
+            <div className="p-4">
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th className="py-2 text-center">Organization Name</th>
+                    <th className="py-2 text-center">Year Start</th>
+                    <th className="py-2 text-center">Year End</th>
+                    <th className="py-2 text-center">Title</th>
+                    <th className="py-2 text-center">Experience Description</th>
+                  </tr>
+                </thead>
+                <tbody className="w-full max-w-full">
+                  {organization.map((item) => (
+                    <tr key={item.id} className="bg-gray-200">
+                      <td className="py-2 text-center">
+                        {item.name_organization}
+                      </td>
+                      <td className="py-2 text-center">{item.year_start}</td>
+                      <td className="py-2 text-center">{item.year_end}</td>
+                      <td className="py-2 text-center">{item.title}</td>
+                      <td className="py-2 text-center">
+                        {item.description_experience}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
+
       <style>
         {`
-          @media print {
-            .print-mode .card {
-              background-color: transparent;
+           @media print {
+            .print-mode .shadow-lg {
               box-shadow: none;
             }
+
+          .print-mode-table th,
+          .print-mode-table td {
+            border: 1px solid #000;
           }
         `}
       </style>

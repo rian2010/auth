@@ -14,7 +14,6 @@ export default function Hero() {
       `}
       </style>
       <section className="relative min-h-screen mt-14">
-        {" "}
         {/* Add 'mt-14' to create top margin */}
         <div className="grid px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 relative z-10">
           <div className="flex flex-col items-center justify-center h-full lg:col-span-7">

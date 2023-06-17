@@ -10,6 +10,15 @@ class TalentProfile extends Model
     use HasFactory;
 
     protected $fillable = [
-        ''
+        'nim',
+        'prodi',
+        'phone_number',
+        'skill',
+        'image'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

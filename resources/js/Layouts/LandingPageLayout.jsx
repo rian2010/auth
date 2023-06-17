@@ -126,9 +126,9 @@ const Navbar = ({ user, header, children }) => {
                 </li>
                 <li>
                   <NavLink
-                    href="#"
+                    href={route("talentview")}
                     className="block py-2 pl-3 pr-4 lg:p-0 hover:text-primary-700 dark:text-white"
-                    active={route().current("talent") ? "true" : undefined}
+                    active={route().current("talentview") ? "true" : undefined}
                   >
                     Talent
                   </NavLink>
@@ -156,6 +156,39 @@ const Navbar = ({ user, header, children }) => {
       )}
 
       <main className="py-6 px-4 sm:px-6 lg:px-8">{children}</main>
+
+      <footer className="footer p-10 bg-base-200 text-base-content">
+        <div>
+          <img
+            src="https://talent-hub.id/mhs/upload/profile_picture/logo_biru_sikomagabung2.png"
+            className="h-20"
+          />
+          <p>
+            Polibatam Talenthub <br />
+            System Information Competency Student{" "}
+          </p>
+        </div>
+        <div>
+          <span className="footer-title">Services</span>
+          <a className="link link-hover">Branding</a>
+          <a className="link link-hover">Design</a>
+          <a className="link link-hover">Marketing</a>
+          <a className="link link-hover">Advertisement</a>
+        </div>
+        <div>
+          <span className="footer-title">Company</span>
+          <a className="link link-hover">About us</a>
+          <a className="link link-hover">Contact</a>
+          <a className="link link-hover">Jobs</a>
+          <a className="link link-hover">Press kit</a>
+        </div>
+        <div>
+          <span className="footer-title">Legal</span>
+          <a className="link link-hover">Terms of use</a>
+          <a className="link link-hover">Privacy policy</a>
+          <a className="link link-hover">Cookie policy</a>
+        </div>
+      </footer>
     </div>
   );
 };

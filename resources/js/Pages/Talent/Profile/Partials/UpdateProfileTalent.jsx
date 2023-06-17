@@ -87,16 +87,18 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
 
                           <div className="sm:col-span-2">
                             <label
-                              htmlFor="salary"
+                              htmlFor="nim"
                               className="block text-sm font-medium leading-6 text-gray-900"
                             >
                               NIM
                             </label>
                             <div className="mt-2">
                               <input
+                                value={data.nim}
                                 type="text"
-                                name="salary"
-                                id="salary"
+                                name="nim"
+                                id="nim"
+                                onChange={(e) => setData("nim", e.target.value)}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                               />
                             </div>
@@ -110,9 +112,13 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                             </label>
                             <div className="mt-2">
                               <input
+                                value={data.phone_number}
                                 type="text"
                                 name="phone-number"
                                 id="phone-number"
+                                onChange={(e) =>
+                                  setData("phone_number", e.target.value)
+                                }
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                               />
                             </div>
@@ -127,32 +133,19 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                             </label>
                             <div className="mt-2">
                               <input
+                                value={data.prodi}
                                 type="text"
                                 name="experience-level"
                                 id="experience-level"
+                                onChange={(e) =>
+                                  setData("prodi", e.target.value)
+                                }
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                               />
                             </div>
                           </div>
 
                           <div className="sm:col-span-3">
-                            <label
-                              htmlFor="experience-level"
-                              className="block text-sm font-medium leading-6 text-gray-900"
-                            >
-                              Experience Level
-                            </label>
-                            <div className="mt-2">
-                              <input
-                                type="text"
-                                name="experience-level"
-                                id="experience-level"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="col-span-full">
                             <label
                               htmlFor="address"
                               className="block text-sm font-medium leading-6 text-gray-900"
@@ -161,15 +154,19 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                             </label>
                             <div className="mt-2">
                               <input
+                                value={data.address}
                                 type="text"
                                 name="address"
                                 id="address"
-                                autoComplete="street-address"
+                                onChange={(e) =>
+                                  setData("address", e.target.value)
+                                }
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                               />
                             </div>
                           </div>
-                          <div className="col-span-full">
+
+                          {/* <div className="col-span-full">
                             <label
                               htmlFor="skill"
                               className="block text-sm font-medium leading-6 text-gray-900"
@@ -177,18 +174,19 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                               Skill
                             </label>
                             <div className="mt-2">
-                              <textarea
-                                id="skill"
+                              <input
+                                value={data.skill}
+                                type="text"
                                 name="skill"
-                                rows={3}
+                                id="skill"
+                                autoComplete="skill"
+                                onChange={(e) =>
+                                  setData("skill", e.target.value)
+                                }
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                defaultValue={""}
                               />
                             </div>
-                            <p className="mt-3 text-sm leading-6 text-gray-600">
-                              Use proper English
-                            </p>
-                          </div>
+                          </div> */}
 
                           <div className="col-span-full">
                             <label
@@ -199,6 +197,7 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                             </label>
                             <div className="mt-2">
                               <textarea
+                                // value={data.des}
                                 id="description"
                                 name="description"
                                 rows={3}

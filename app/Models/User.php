@@ -57,10 +57,6 @@ class User extends Authenticatable
         return $this->hasMany(Vacancy::class);
     }
 
-    public function chirps(): HasMany
-    {
-        return $this->hasMany(Chirp::class);
-    }
 
     public function organization(): HasMany
     {

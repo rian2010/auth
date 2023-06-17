@@ -41,7 +41,7 @@ class TalentProfileController extends Controller
             'prodi' => 'required|string|min:225',
             'address' => 'required|string|min:225',
             'phone_number' => 'required|integer|min:8',
-            'skill' => 'required|integer',
+            'skill' => 'required|string',
             'image' => 'required|string',
         ]);
 
@@ -74,13 +74,33 @@ class TalentProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        // $validated = $request->validate([
+        //     'nim' => 'required|integer|min:8',
+        //     'prodi' => 'required|string|min:225',
+        //     'address' => 'required|string|min:225',
+        //     'phone_number' => 'required|integer|min:8',
+        //     'skill' => 'required|string',
+        //     'image' => 'required|string',
+        // ]);
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
+        // [
+        //     'nim' => $request->nim,
+        //     'prodi' => $request->prodi,
+        //     'address' => $request->address,
+        //     'phone_number' => $request->phone_number,
+        //     'skill' => $request->skill,
+        //     'imgae' => $request->nim,
+        // ];
 
         $request->user()->save();
+
+        // $request->user()->talent()->create($validated);
+
 
         return Redirect::route('talentprofile.index');
     }
