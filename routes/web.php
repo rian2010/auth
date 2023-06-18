@@ -44,7 +44,12 @@ use Inertia\Inertia;
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
 Route::get('/company', [CompanyViewController::class, 'index'])->name('company');
 Route::get('/talent', [TalentViewController::class, 'index'])->name('talentview');
-Route::get('/talentdetails', [TalentDetailsController::class, 'index'])->name('talent.details');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/talentdetails', [TalentDetailsController::class, 'index'])->name('talent.details');
+});
+
+Route::get('/vacancy', [VacancyViewController::class, 'index'])->name('vacancydetails');
 
 // Route::get('/competency', [AchivementController::class, 'index'])->name('competency');
 

@@ -117,9 +117,11 @@ const Navbar = ({ user, header, children }) => {
 
                 <li>
                   <NavLink
-                    // href={route("vacancy")}
+                    href={route("vacancydetails")}
                     className="block py-2 pl-3 pr-4 lg:p-0 hover:text-primary-700 dark:text-white"
-                    // active={route().current("vacancy") ? "true" : undefined}
+                    active={
+                      route().current("vacancydetails") ? "true" : undefined
+                    }
                   >
                     Vacancy
                   </NavLink>
@@ -165,7 +167,7 @@ const Navbar = ({ user, header, children }) => {
           />
           <p>
             Polibatam Talenthub <br />
-            System Information Competency Student{" "}
+            System Information Competency Student
           </p>
         </div>
         <div>
