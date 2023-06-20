@@ -1,6 +1,7 @@
 import React from "react";
 import LandingPageLayout from "@/Layouts/LandingPageLayout";
 import { usePage } from "@inertiajs/react";
+import Paginator from "@/Components/Paginator";
 
 function Company() {
   const { company } = usePage().props;
@@ -9,7 +10,7 @@ function Company() {
     <LandingPageLayout>
       <div className="p-16">
         <div className="flex flex-wrap justify-center -mx-4">
-          {company.map((item) => (
+          {company.data.map((item) => (
             <div
               key={item.id}
               className="max-w-sm rounded overflow-hidden shadow-lg mx-4 mb-4"
@@ -29,6 +30,9 @@ function Company() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex justify-center">
+          <Paginator links={company.links} />
         </div>
       </div>
     </LandingPageLayout>

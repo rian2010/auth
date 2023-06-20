@@ -21,7 +21,7 @@ class VacancyController extends Controller
         $user = Auth::user();
         $vacancy = Vacancy::where('user_id', $user->id)
             ->orderByDesc('id')
-            ->get();
+            ->paginate('6');
         return Inertia::render('Company/Vacancy/VacancyIndex', [
             'vacancy' => $vacancy
         ]);

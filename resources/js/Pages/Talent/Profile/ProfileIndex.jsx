@@ -1,8 +1,5 @@
 import { Head, Link } from "@inertiajs/react";
 import UserDashboardLayout from "@/Layouts/UserDashboardLayout";
-import Icon from "@/Images/icon.png";
-import Kampus from "@/Images/Kampus.jpg";
-import { useState } from "react";
 import UpdateProfileTalent from "./Partials/UpdateProfileTalent";
 import DeleteUserForm from "./Partials/DeleteUserForm";
 
@@ -25,11 +22,11 @@ export default function Dashboard({ auth, education, mustVerifyEmail }) {
         />
       </div>
 
-      <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+      {/* <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
         <div className="max-w-xl">
           <DeleteUserForm />
         </div>
-      </div>
+      </div> */}
     </UserDashboardLayout>
   );
 }

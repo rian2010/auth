@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\CompanyViewController;
 use App\Http\Controllers\CvController;
 use App\Http\Controllers\ExperienceController;
@@ -9,9 +10,9 @@ use App\Http\Controllers\GenerateController;
 use App\Http\Controllers\LandingpageController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Student\AboutmeController;
 use App\Http\Controllers\Student\AchivementController;
 use App\Http\Controllers\Student\EducationController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TalentDetailsController;
 use App\Http\Controllers\TalentProfileController;
 use App\Http\Controllers\TalentViewController;
@@ -44,19 +45,10 @@ use Inertia\Inertia;
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
 Route::get('/company', [CompanyViewController::class, 'index'])->name('company');
 Route::get('/talent', [TalentViewController::class, 'index'])->name('talentview');
-
+Route::get('/talentdetails', [TalentDetailsController::class, 'index'])->name('talent.details');
 Route::middleware('auth')->group(function () {
-    Route::get('/talentdetails', [TalentDetailsController::class, 'index'])->name('talent.details');
+    Route::get('/vacancy', [VacancyViewController::class, 'index'])->name('vacancydetails');
 });
-
-Route::get('/vacancy', [VacancyViewController::class, 'index'])->name('vacancydetails');
-
-// Route::get('/competency', [AchivementController::class, 'index'])->name('competency');
-
-
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/home', [AuthController::class, 'index'])->name('home');
 
@@ -65,13 +57,15 @@ Route::middleware(['auth', 'talent'])->prefix('talent')->group(function () {
     Route::resource('/achivement', AchivementController::class);
     Route::resource('/experience', ExperienceController::class);
     Route::resource('/organization', OrganizationController::class);
-    Route::get('/talentprofile', [TalentProfileController::class, 'index'])->name('talentprofile.index');
-    Route::patch('/talentprofile', [TalentProfileController::class, 'update'])->name('talentprofile.update');
+    Route::get('/talentprofile', [StudentController::class, 'index'])->name('talentprofile.index');
+    Route::get('/talentprofile', [StudentController::class, 'store'])->name('talentprofile.store');
     Route::resource('/generate', GenerateController::class);
 });
 
 Route::middleware(['auth', 'company'])->prefix('company')->group(function () {
     Route::resource('/vacancy', VacancyController::class);
+    Route::get('/companyprofile', [CompanyProfileController::class, 'index'])->name('company.profile');
+    Route::patch('/companyprofile', [CompanyProfileController::class, 'update'])->name('company.update');
 });
 
 Route::middleware('auth')->group(function () {

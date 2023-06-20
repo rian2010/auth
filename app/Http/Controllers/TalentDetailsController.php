@@ -20,24 +20,24 @@ class TalentDetailsController extends Controller
             ->get();
 
         $education = [];
-        $achivement = [];
+        $achievement = [];
         $experience = [];
         $organization = [];
 
         foreach ($talents as $talent) {
-            $education[] = Education::where('user_id', $talent->id)
+            $education[$talent->id] = Education::where('user_id', $talent->id)
                 ->orderByDesc('id')
                 ->get();
 
-            $achivement[] = Achivement::where('user_id', $talent->id)
+            $achievement[$talent->id] = Achivement::where('user_id', $talent->id)
                 ->with('user:id,name')
                 ->get();
 
-            $experience[] = Experience::where('user_id', $talent->id)
+            $experience[$talent->id] = Experience::where('user_id', $talent->id)
                 ->orderByDesc('id')
                 ->get();
 
-            $organization[] = Organization::where('user_id', $talent->id)
+            $organization[$talent->id] = Organization::where('user_id', $talent->id)
                 ->orderByDesc('id')
                 ->get();
         }
@@ -45,7 +45,7 @@ class TalentDetailsController extends Controller
         return Inertia::render('LandingPage/talentprofile', [
             'talents' => $talents,
             'education' => $education,
-            'achivement' => $achivement,
+            'achievement' => $achievement,
             'experience' => $experience,
             'organization' => $organization
         ]);

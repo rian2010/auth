@@ -14,7 +14,7 @@ class CompanyViewController extends Controller
     {
         $company = User::where('role', 'company')
             ->orderByDesc('id')
-            ->get();
+            ->paginate('6');
 
         return Inertia::render(
             'LandingPage/Company',

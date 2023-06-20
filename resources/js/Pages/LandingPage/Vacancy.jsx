@@ -3,7 +3,7 @@ import LandingPageLayout from "@/Layouts/LandingPageLayout";
 import { usePage } from "@inertiajs/react";
 import { useState } from "react";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
-import { InertiaLink } from "@inertiajs/inertia-react";
+import Paginator from "@/Components/Paginator";
 
 function Vacancy() {
   const { vacancy } = usePage().props;
@@ -15,11 +15,16 @@ function Vacancy() {
     setShowModal(true);
   };
 
+  const modalStyle = {
+    scrollbarWidth: "thin",
+    scrollbarColor: "#999 #eee",
+  };
+
   return (
     <LandingPageLayout>
       <div className="p-16">
         <div className="flex flex-wrap justify-center -mx-4">
-          {vacancy.map((item) => (
+          {vacancy.data.map((item) => (
             <div
               key={item.id}
               className="max-w-sm rounded overflow-hidden shadow-lg mx-4 mb-4"
@@ -44,11 +49,18 @@ function Vacancy() {
             </div>
           ))}
         </div>
+
+        <div className="flex justify-center">
+          <Paginator links={vacancy.links} />
+        </div>
       </div>
 
       {showModal && selectedVacancy && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded-md w-8/12">
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
+          style={modalStyle}
+        >
+          <div className="bg-white p-4 rounded-md w-8/12 h-4/5 overflow-y-auto">
             <h2 className="text-lg font-semibold mb-4 text-center flex items-center justify-center">
               <BriefcaseIcon className="w-6 h-6 mr-2" />
               Vacancy Details
@@ -89,6 +101,24 @@ function Vacancy() {
                       {selectedVacancy.registration_duration}
                     </dd>
                   </div>
+                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt className="text-sm font-medium leading-6 text-gray-900">
+                      Contact
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                      <a
+                        href={`mailto:${selectedVacancy.user.email}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {selectedVacancy.user.email}
+                      </a>
+                      <span className="text-xs text-gray-500 ml-1">
+                        (Click here to apply)
+                      </span>
+                    </dd>
+                  </div>
+
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
                       Job Offer

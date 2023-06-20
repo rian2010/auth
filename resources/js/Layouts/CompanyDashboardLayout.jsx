@@ -50,6 +50,7 @@ export default function Authenticated({ user, header, children }) {
                   Vacancy
                 </NavLink>
               </div>
+              <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"></div>
             </div>
 
             <div className="hidden sm:flex sm:items-center sm:ml-6">
@@ -93,7 +94,7 @@ export default function Authenticated({ user, header, children }) {
                   </Dropdown.Trigger>
 
                   <Dropdown.Content>
-                    <Dropdown.Link href={route("profile.edit")}>
+                    <Dropdown.Link href={route("company.profile")}>
                       Settings
                     </Dropdown.Link>
                     <Dropdown.Link
@@ -172,7 +173,7 @@ export default function Authenticated({ user, header, children }) {
             </div>
 
             <div className="mt-3 space-y-1">
-              <ResponsiveNavLink href={route("profile.edit")}>
+              <ResponsiveNavLink href={route("company.profile")}>
                 Settings
               </ResponsiveNavLink>
               <ResponsiveNavLink
@@ -197,7 +198,7 @@ export default function Authenticated({ user, header, children }) {
 
       <main className="flex-grow py-6 px-4 sm:px-6 lg:px-8">{children}</main>
 
-      <footer className="bg-blue-500 py-4 px-4 sm:px-6 lg:px-8 sticky bottom-0">
+      <footer className="bg-blue-500 py-4 px-4 sm:px-6 lg:px-8  bottom-0">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-sm text-white">
             &copy; {new Date().getFullYear()} Your Website. All rights reserved.

@@ -1,4 +1,3 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 import CompanyDashboardLayout from "@/Layouts/CompanyDashboardLayout";
 

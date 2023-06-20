@@ -166,7 +166,7 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                             </div>
                           </div>
 
-                          {/* <div className="col-span-full">
+                          <div className="col-span-full">
                             <label
                               htmlFor="skill"
                               className="block text-sm font-medium leading-6 text-gray-900"
@@ -186,7 +186,7 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                               />
                             </div>
-                          </div> */}
+                          </div>
 
                           <div className="col-span-full">
                             <label
@@ -277,6 +277,7 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
               <img
                 src={Icon}
                 alt="Profile Picture"
+                value={data.image}
                 className="h-16 w-16 rounded-full bg-gray-200 mx-auto mt-7 relative z-10"
               />
             </label>

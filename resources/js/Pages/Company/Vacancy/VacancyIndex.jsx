@@ -3,6 +3,7 @@ import { Head, Link, router } from "@inertiajs/react";
 import CompanyDashboardLayout from "@/Layouts/CompanyDashboardLayout";
 import "react-datepicker/dist/react-datepicker.css";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
+import Paginator from "@/Components/Paginator";
 
 export default function Dashboard({ auth, vacancy, ...props }) {
   const [redirect, setRedirect] = useState(false);
@@ -35,8 +36,15 @@ export default function Dashboard({ auth, vacancy, ...props }) {
     >
       <Head title="Dashboard" />
       <div className="flex justify-center py-12">
+        {/* <button
+          className="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white"
+          onClick={handleAddClick}
+          href={route("vacancy.create")}
+        >
+          Add
+        </button> */}
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-          {vacancy.map((item) => (
+          {vacancy.data.map((item) => (
             <div
               key={item.id}
               className="card bg-base-100 shadow-md rounded-md p-4 w-96"
@@ -69,6 +77,9 @@ export default function Dashboard({ auth, vacancy, ...props }) {
             </div>
           ))}
         </div>
+      </div>
+      <div className="flex justify-center">
+        <Paginator links={vacancy.links} />
       </div>
 
       {showModal && selectedVacancy && (
