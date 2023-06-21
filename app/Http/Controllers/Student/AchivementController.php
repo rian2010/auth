@@ -18,7 +18,7 @@ class AchivementController extends Controller
 
         $achivement = Achivement::where('user_id', $user->id)
             ->with('user:id,name')
-            ->get();
+            ->paginate('6');
         return Inertia::render('Talent/Achivement/AchivementIndex', [
             'achivement' => $achivement,
 

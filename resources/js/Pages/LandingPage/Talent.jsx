@@ -1,6 +1,7 @@
 import React from "react";
 import LandingPageLayout from "@/Layouts/LandingPageLayout";
 import { Link, usePage } from "@inertiajs/react";
+import Paginator from "@/Components/Paginator";
 
 export default function Talent() {
   const { talent } = usePage().props;
@@ -9,7 +10,7 @@ export default function Talent() {
     <LandingPageLayout>
       <div className="p-16">
         <div className="flex flex-wrap justify-center -mx-4">
-          {talent.map((item) => (
+          {talent.data.map((item) => (
             <div
               key={item.id}
               className="max-w-sm rounded overflow-hidden shadow-lg mx-4 mb-4"
@@ -31,6 +32,9 @@ export default function Talent() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex justify-center">
+          <Paginator links={talent.links} />
         </div>
       </div>
     </LandingPageLayout>

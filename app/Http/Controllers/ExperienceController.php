@@ -18,7 +18,7 @@ class ExperienceController extends Controller
         $user = Auth::user();
         $experience = Experience::where('user_id', $user->id)
             ->orderByDesc('id')
-            ->get();
+            ->paginate('6');
         return Inertia::render('Talent/Experience/ExperienceIndex', [
             'experience' => $experience,
         ]);

@@ -5,23 +5,20 @@ import Icon from "@/Images/wallpaper.jpg";
 
 export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
   const user = usePage().props.auth.user;
-
   const { data, setData, patch, errors, processing, recentlySuccessful } =
     useForm({
       name: user.name,
       email: user.email,
-      nim: "",
-      prodi: "",
-      address: "",
-      phone_number: "",
-      skill: "",
-      image: "",
+      nim: user.nim,
+      phone_number: user.phone_number,
+      prodi: user.prodi,
+      skill: user.skill,
     });
 
   const submit = (e) => {
     e.preventDefault();
 
-    patch(route("talentprofile.update"), data);
+    patch(route("talentprofile.update"));
   };
 
   return (
@@ -147,27 +144,6 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
 
                           <div className="sm:col-span-3">
                             <label
-                              htmlFor="address"
-                              className="block text-sm font-medium leading-6 text-gray-900"
-                            >
-                              Address
-                            </label>
-                            <div className="mt-2">
-                              <input
-                                value={data.address}
-                                type="text"
-                                name="address"
-                                id="address"
-                                onChange={(e) =>
-                                  setData("address", e.target.value)
-                                }
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                              />
-                            </div>
-                          </div>
-
-                          <div className="col-span-full">
-                            <label
                               htmlFor="skill"
                               className="block text-sm font-medium leading-6 text-gray-900"
                             >
@@ -186,28 +162,6 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                               />
                             </div>
-                          </div>
-
-                          <div className="col-span-full">
-                            <label
-                              htmlFor="description"
-                              className="block text-sm font-medium leading-6 text-gray-900"
-                            >
-                              Description
-                            </label>
-                            <div className="mt-2">
-                              <textarea
-                                // value={data.des}
-                                id="description"
-                                name="description"
-                                rows={3}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                defaultValue={""}
-                              />
-                            </div>
-                            <p className="mt-3 text-sm leading-6 text-gray-600">
-                              Write a few sentences about yourself.
-                            </p>
                           </div>
                         </div>
                       </div>
@@ -282,7 +236,6 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
               />
             </label>
             <div className="p-4">
-              {/* <h2 className="text-center text-xl mt-2">{auth.user.name}</h2> */}
               <h2 className="text-center text-base text-gray-400 mt-2">
                 Teknologi Rekayasa Perangkat Lunak
               </h2>

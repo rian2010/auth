@@ -18,7 +18,7 @@ class OrganizationController extends Controller
         $user = Auth::user();
         $organization = Organization::where('user_id', $user->id)
             ->orderByDesc('id')
-            ->get();
+            ->paginate('6');
         return Inertia::render('Talent/Organization/Organization', [
             'organization' => $organization
         ]);

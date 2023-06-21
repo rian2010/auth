@@ -7,6 +7,7 @@ import {
   TrophyIcon,
 } from "@heroicons/react/24/solid";
 import "react-datepicker/dist/react-datepicker.css";
+import Paginator from "@/Components/Paginator";
 
 export default function Dashboard({ auth, props, achivement }) {
   const [redirect, setRedirect] = useState(false);
@@ -52,35 +53,42 @@ export default function Dashboard({ auth, props, achivement }) {
                     Add
                   </button>
                 </div>
-                <table className="w-full">
-                  <thead>
-                    <tr>
-                      <th className="py-2 text-center">Position</th>
-                      <th className="py-2 text-center">Achivement Date</th>
-                      <th className="py-2 text-center">Description</th>
-                      <th className="py-2 text-center">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {achivement.map((item) => (
-                      <tr key={item.id} className="bg-gray-200">
-                        <td className="py-2 text-center">{item.position}</td>
-                        <td className="py-2 text-center">
-                          {item.achivement_date}
-                        </td>
-                        <td className="py-2 text-center">{item.description}</td>
-                        <td className="py-2 text-center">
-                          <button className="mr-2">
-                            <PencilSquareIcon className="h-5 w-5 text-gray-500" />
-                          </button>
-                          <button>
-                            <TrashIcon className="h-5 w-5 text-gray-500" />
-                          </button>
-                        </td>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr>
+                        <th className="py-2 text-center">Position</th>
+                        <th className="py-2 text-center">Achivement Date</th>
+                        <th className="py-2 text-center">Description</th>
+                        <th className="py-2 text-center">Action</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {achivement.data.map((item) => (
+                        <tr key={item.id} className="bg-gray-200">
+                          <td className="py-2 text-center">{item.position}</td>
+                          <td className="py-2 text-center">
+                            {item.achivement_date}
+                          </td>
+                          <td className="py-2 text-center">
+                            {item.description}
+                          </td>
+                          <td className="py-2 text-center">
+                            <button className="mr-2">
+                              <PencilSquareIcon className="h-5 w-5 text-gray-500" />
+                            </button>
+                            <button>
+                              <TrashIcon className="h-5 w-5 text-gray-500" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="flex justify-end mt-4">
+                  <Paginator links={achivement.links} />
+                </div>
               </div>
             </div>
           </div>

@@ -18,7 +18,7 @@ class EducationController extends Controller
         $user = Auth::user();
         $education = Education::where('user_id', $user->id)
             ->orderByDesc('id')
-            ->get();
+            ->paginate('6');
 
 
         return Inertia::render('Talent/education/education', [

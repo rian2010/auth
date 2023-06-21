@@ -17,7 +17,7 @@ class TalentViewController extends Controller
     {
         $talent = User::where('role', 'talent')
             ->orderByDesc('id')
-            ->get();
+            ->paginate('6');
 
         foreach ($talent as $user) {
             $user->education = Education::where('user_id', $user->id)

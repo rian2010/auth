@@ -7,6 +7,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/solid";
 import "react-datepicker/dist/react-datepicker.css";
+import Paginator from "@/Components/Paginator";
 
 export default function Dashboard({ auth, education, ...props }) {
   const [redirect, setRedirect] = useState(false);
@@ -19,6 +20,7 @@ export default function Dashboard({ auth, education, ...props }) {
   const handleAddClick = () => {
     setRedirect(true);
   };
+
   return (
     console.log(props),
     (
@@ -48,41 +50,48 @@ export default function Dashboard({ auth, education, ...props }) {
                     Add
                   </button>
                 </div>
-                <table className="w-full">
-                  <thead>
-                    <tr>
-                      <th className="py-2 text-center">Mark</th>
-                      <th className="py-2 text-center">Major</th>
-                      <th className="py-2 text-center">Year Start</th>
-                      <th className="py-2 text-center">Year End</th>
-                      <th className="py-2 text-center">Last Education</th>
-                      <th className="py-2 text-center">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {education.map((item) => (
-                      <tr key={item.id} className="bg-gray-200">
-                        <td className="py-2 text-center">{item.mark}</td>
-                        <td className="py-2 text-center">{item.major}</td>
-                        <td className="py-2 text-center">{item.year_start}</td>
-                        <td className="py-2 text-center">{item.year_end}</td>
-                        <td className="py-2 text-center">
-                          {item.last_education}
-                        </td>
-                        <td className="py-2 text-center">
-                          <button className="mr-2">
-                            <PencilIcon className="h-5 w-5 text-gray-500" />
-                          </button>
-                          <Link>
-                            <button>
-                              <TrashIcon className="h-5 w-5 text-gray-500" />
-                            </button>
-                          </Link>
-                        </td>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr>
+                        <th className="py-2 text-center">Mark</th>
+                        <th className="py-2 text-center">Major</th>
+                        <th className="py-2 text-center">Year Start</th>
+                        <th className="py-2 text-center">Year End</th>
+                        <th className="py-2 text-center">Last Education</th>
+                        <th className="py-2 text-center">Action</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {education.data.map((item) => (
+                        <tr key={item.id} className="bg-gray-200">
+                          <td className="py-2 text-center">{item.mark}</td>
+                          <td className="py-2 text-center">{item.major}</td>
+                          <td className="py-2 text-center">
+                            {item.year_start}
+                          </td>
+                          <td className="py-2 text-center">{item.year_end}</td>
+                          <td className="py-2 text-center">
+                            {item.last_education}
+                          </td>
+                          <td className="py-2 text-center">
+                            <button className="mr-2">
+                              <PencilIcon className="h-5 w-5 text-gray-500" />
+                            </button>
+                            <Link>
+                              <button>
+                                <TrashIcon className="h-5 w-5 text-gray-500" />
+                              </button>
+                            </Link>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="flex justify-end mt-4">
+                  <Paginator links={education.links} />
+                </div>
               </div>
             </div>
           </div>

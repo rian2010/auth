@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChirpController;
+use App\Http\Controllers\CompanyDetailsController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\CompanyViewController;
 use App\Http\Controllers\CvController;
@@ -44,11 +45,10 @@ use Inertia\Inertia;
 
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
 Route::get('/company', [CompanyViewController::class, 'index'])->name('company');
+Route::get('/company/details/{company', [CompanyDetailsController::class, 'index'])->name('company.details');
 Route::get('/talent', [TalentViewController::class, 'index'])->name('talentview');
 Route::get('/talentdetails', [TalentDetailsController::class, 'index'])->name('talent.details');
-Route::middleware('auth')->group(function () {
-    Route::get('/vacancy', [VacancyViewController::class, 'index'])->name('vacancydetails');
-});
+Route::get('/vacancy', [VacancyViewController::class, 'index'])->name('vacancydetails');
 
 Route::get('/home', [AuthController::class, 'index'])->name('home');
 
@@ -57,8 +57,8 @@ Route::middleware(['auth', 'talent'])->prefix('talent')->group(function () {
     Route::resource('/achivement', AchivementController::class);
     Route::resource('/experience', ExperienceController::class);
     Route::resource('/organization', OrganizationController::class);
-    Route::get('/talentprofile', [StudentController::class, 'index'])->name('talentprofile.index');
-    Route::get('/talentprofile', [StudentController::class, 'store'])->name('talentprofile.store');
+    Route::get('/talentprofile', [StudentController::class, 'edit'])->name('talentprofile.index');
+    Route::patch('/profile', [StudentController::class, 'update'])->name('talentprofile.update');
     Route::resource('/generate', GenerateController::class);
 });
 
@@ -74,21 +74,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::group(['prefix' => 'company,talent'], function () {
-
-//     Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-//         ->middleware('guest')
-//         ->name('login');
-
-//     Route::post('/login', [AuthenticatedSessionController::class, 'store'])
-//         ->middleware('guest');
-
-//     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-//         ->middleware('auth:admin')
-//         ->name('logout');
-
-//     Route::group(['middleware' => 'auth:admin'], function () {
-//     });
-// });
 
 require __DIR__ . '/auth.php';

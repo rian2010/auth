@@ -7,6 +7,7 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/24/solid";
 import "react-datepicker/dist/react-datepicker.css";
+import Paginator from "@/Components/Paginator";
 
 export default function Dashboard({ auth, organization, ...props }) {
   console.log("props: ", props);
@@ -50,40 +51,47 @@ export default function Dashboard({ auth, organization, ...props }) {
                   Add
                 </button>
               </div>
-              <table className="w-full">
-                <thead>
-                  <tr>
-                    <th className="py-2 text-center">Organization Name</th>
-                    <th className="py-2 text-center">Year Start</th>
-                    <th className="py-2 text-center">Year End</th>
-                    <th className="py-2 text-center">Title</th>
-                    <th className="py-2 text-center">Experience Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {organization.map((item) => (
-                    <tr key={item.id} className="bg-gray-200">
-                      <td className="py-2 text-center">
-                        {item.name_organization}
-                      </td>
-                      <td className="py-2 text-center">{item.year_start}</td>
-                      <td className="py-2 text-center">{item.year_end}</td>
-                      <td className="py-2 text-center">{item.title}</td>
-                      <td className="py-2 text-center">
-                        {item.description_experience}
-                      </td>
-                      <td className="py-2 text-center">
-                        <button className="mr-2">
-                          <PencilSquareIcon className="h-5 w-5 text-gray-500" />
-                        </button>
-                        <button>
-                          <TrashIcon className="h-5 w-5 text-gray-500" />
-                        </button>
-                      </td>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr>
+                      <th className="py-2 text-center">Organization Name</th>
+                      <th className="py-2 text-center">Year Start</th>
+                      <th className="py-2 text-center">Year End</th>
+                      <th className="py-2 text-center">Title</th>
+                      <th className="py-2 text-center">
+                        Experience Description
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {organization.data.map((item) => (
+                      <tr key={item.id} className="bg-gray-200">
+                        <td className="py-2 text-center">
+                          {item.name_organization}
+                        </td>
+                        <td className="py-2 text-center">{item.year_start}</td>
+                        <td className="py-2 text-center">{item.year_end}</td>
+                        <td className="py-2 text-center">{item.title}</td>
+                        <td className="py-2 text-center">
+                          {item.description_experience}
+                        </td>
+                        <td className="py-2 text-center">
+                          <button className="mr-2">
+                            <PencilSquareIcon className="h-5 w-5 text-gray-500" />
+                          </button>
+                          <button>
+                            <TrashIcon className="h-5 w-5 text-gray-500" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="flex justify-end mt-4">
+                  <Paginator links={organization.links} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
