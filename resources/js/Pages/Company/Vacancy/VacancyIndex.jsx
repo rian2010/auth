@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Head, Link, router } from "@inertiajs/react";
 import CompanyDashboardLayout from "@/Layouts/CompanyDashboardLayout";
 import "react-datepicker/dist/react-datepicker.css";
-import { BriefcaseIcon } from "@heroicons/react/24/solid";
+import { BriefcaseIcon, TrashIcon } from "@heroicons/react/24/solid";
 import Paginator from "@/Components/Paginator";
 
 export default function Dashboard({ auth, vacancy, ...props }) {
@@ -25,6 +25,12 @@ export default function Dashboard({ auth, vacancy, ...props }) {
     setShowModal(true);
   };
 
+  const handleDelete = () => {
+    // Perform the deletion logic here
+    // After successful deletion, close the modal
+    setShowModal(false);
+  };
+
   return (
     <CompanyDashboardLayout
       user={auth.user}
@@ -35,14 +41,16 @@ export default function Dashboard({ auth, vacancy, ...props }) {
       }
     >
       <Head title="Dashboard" />
-      <div className="flex justify-center py-12">
-        {/* <button
+      <div className=" flex items-end">
+        <button
           className="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white"
           onClick={handleAddClick}
           href={route("vacancy.create")}
         >
           Add
-        </button> */}
+        </button>
+      </div>
+      <div className="flex justify-end py-12 pr-4">
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {vacancy.data.map((item) => (
             <div
@@ -161,6 +169,15 @@ export default function Dashboard({ auth, vacancy, ...props }) {
               </div>
             </div>
             <div className="flex justify-end mt-4">
+              <Link
+                href={route("vacancy.destroy", { id: selectedVacancy.id })}
+                method="delete"
+              >
+                <button className="btn btn-error btn-sm mr-2">
+                  <TrashIcon className="w-4 h-4 text-white-500 mr-1" />
+                  Delete
+                </button>
+              </Link>
               <button
                 className="btn btn-primary btn-sm mr-2"
                 onClick={() => setShowModal(false)}

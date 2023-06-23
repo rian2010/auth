@@ -75,10 +75,17 @@ export default function Dashboard({ auth, education, ...props }) {
                             {item.last_education}
                           </td>
                           <td className="py-2 text-center">
-                            <button className="mr-2">
-                              <PencilIcon className="h-5 w-5 text-gray-500" />
-                            </button>
-                            <Link>
+                            <Link
+                              href={route("education.edit", { id: item.id })}
+                            >
+                              <button className="mr-2">
+                                <PencilIcon className="h-5 w-5 text-gray-500" />
+                              </button>
+                            </Link>
+                            <Link
+                              href={route("education.destroy", { id: item.id })}
+                              method="delete"
+                            >
                               <button>
                                 <TrashIcon className="h-5 w-5 text-gray-500" />
                               </button>

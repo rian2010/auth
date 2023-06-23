@@ -74,15 +74,17 @@ export default function Dashboard({ auth, experience, ...props }) {
                         <td className="py-2 text-center">{item.company}</td>
                         <td className="py-2 text-center">{item.position}</td>
                         <td className="py-2 text-center">
-                          <button
-                            className="mr-2"
-                            onClick={() => handleEditClick(item.id)}
-                          >
+                          <button className="mr-2">
                             <PencilSquareIcon className="h-5 w-5 text-gray-500" />
                           </button>
-                          <button onClick={() => handleDeleteClick(item.id)}>
-                            <TrashIcon className="h-5 w-5 text-gray-500" />
-                          </button>
+                          <Link
+                            href={route("experience.destroy", { id: item.id })}
+                            method="delete"
+                          >
+                            <button>
+                              <TrashIcon className="h-5 w-5 text-gray-500" />
+                            </button>
+                          </Link>
                         </td>
                       </tr>
                     ))}

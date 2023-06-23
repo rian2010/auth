@@ -77,9 +77,16 @@ export default function Dashboard({ auth, props, achivement }) {
                             <button className="mr-2">
                               <PencilSquareIcon className="h-5 w-5 text-gray-500" />
                             </button>
-                            <button>
-                              <TrashIcon className="h-5 w-5 text-gray-500" />
-                            </button>
+                            <Link
+                              href={route("achivement.destroy", {
+                                id: item.id,
+                              })}
+                              method="delete"
+                            >
+                              <button>
+                                <TrashIcon className="h-5 w-5 text-gray-500" />
+                              </button>
+                            </Link>
                           </td>
                         </tr>
                       ))}

@@ -50,16 +50,40 @@ class EducationController extends Controller
         return redirect(route('education.index'));
     }
 
+    public function edit(Request $request, Education $education): Response
+    {
+        $education = $education->find($request->id);
+
+        return Inertia::render('Talent/education/educationEdit', [
+            'education' => $education
+        ]);
+    }
+
+
+    public function update(Request $request, Education $education): RedirectResponse
+    {
+        $this->authorize('update', $education);
+
+        $validated = $request->validate([
+            'mark' => 'required|integer|max:100',
+            'major' => 'required|string|max:225',
+            'year_start' => 'required|date|max:100',
+            'year_end' => 'required|date|max:100',
+            'last_education' => 'required|string|max:100',
+        ]);
+
+        $education->update($validated);
+
+        return redirect(route('education.index'));
+    }
+
     public function destroy(Request $request, Education $education): RedirectResponse
     {
 
-        $education = Education::find($request->id);
+        $this->authorize('delete', $education);
 
-        if ($education) {
-            $education->delete();
-            return redirect()->route('education')->with('message', 'Data berhasil dihapus');
-        } else {
-            return redirect()->route('education')->with('error', 'Data tidak ditemukan');
-        }
+        $education->delete();
+
+        return redirect(route('education.index'));
     }
 }

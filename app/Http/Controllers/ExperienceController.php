@@ -44,4 +44,13 @@ class ExperienceController extends Controller
 
         return redirect(route('experience.index'));
     }
+
+    public function destroy(Experience $experience)
+    {
+        $this->authorize('delete', $experience);
+
+        $experience->delete();
+
+        return redirect(route('experience.index'));
+    }
 }

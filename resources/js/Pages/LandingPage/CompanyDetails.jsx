@@ -19,7 +19,7 @@ function classNames(...classes) {
 }
 
 export default function Landing() {
-  const { companies } = usePage().props;
+  const { company } = usePage().props;
   return (
     <div>
       <Head title="Company" />
@@ -68,7 +68,7 @@ export default function Landing() {
               <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
                 <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                   <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                    Company
+                    {company.name}
                   </h1>
                 </div>
 
@@ -77,46 +77,50 @@ export default function Landing() {
                   <>
                     <div className="px-4 sm:px-0">
                       <h3 className="text-base font-semibold leading-7 text-gray-900">
-                        Company Information
+                        {company.name} Information
                       </h3>
                       <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
                         Company details.
                       </p>
                     </div>
                     <div className="mt-6 border-t border-gray-100">
-                      <dl className="divide-y divide-gray-100">
-                        <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                          <dt className="text-sm font-medium leading-6 text-gray-900">
-                            Company Name
-                          </dt>
-                          <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {/* {item.name} */}
-                          </dd>
-                        </div>
-                        <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                          <dt className="text-sm font-medium leading-6 text-gray-900">
-                            Address
-                          </dt>
-                          <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"></dd>
-                        </div>
-                        <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                          <dt className="text-sm font-medium leading-6 text-gray-900">
-                            Email address
-                          </dt>
-                          <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            {/* {item.email} */}
-                          </dd>
-                        </div>
+                      {company && (
+                        <dl className="divide-y divide-gray-100">
+                          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <dt className="text-sm font-medium leading-6 text-gray-900">
+                              Company Name
+                            </dt>
+                            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                              {company.name}
+                            </dd>
+                          </div>
+                          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <dt className="text-sm font-medium leading-6 text-gray-900">
+                              Address
+                            </dt>
+                            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                              {company.address}
+                            </dd>
+                          </div>
+                          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <dt className="text-sm font-medium leading-6 text-gray-900">
+                              Email address
+                            </dt>
+                            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                              {company.email}
+                            </dd>
+                          </div>
 
-                        <Link href={route("vacancydetails")}>
-                          <button
-                            type="submit"
-                            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                          >
-                            See Vacancy
-                          </button>
-                        </Link>
-                      </dl>
+                          <Link href={route("vacancydetails")}>
+                            <button
+                              type="submit"
+                              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            >
+                              See Vacancy
+                            </button>
+                          </Link>
+                        </dl>
+                      )}
                     </div>
                   </>
                 </div>

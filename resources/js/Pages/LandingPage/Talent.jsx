@@ -17,7 +17,7 @@ export default function Talent() {
             >
               <img
                 className="w-full bg-cover"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/2048px-User-avatar.svg.png"
+                src="https://placeimg.com/640/480/any"
                 alt="Sunset in the mountains"
               />
               <div className="px-6 py-4">

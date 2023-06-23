@@ -28,14 +28,10 @@ class User extends Authenticatable
         'role',
     ];
 
-    public function talent()
-    {
-        return $this->hasOne(Student::class);
-    }
 
     public function userDetail()
     {
-        return $this->hasOne(Company::class, 'user_id', 'id');
+        return $this->hasOne(Student::class, 'user_id', 'id');
     }
 
     public function education(): HasMany

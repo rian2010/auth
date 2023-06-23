@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -17,10 +19,7 @@ class StudentController extends Controller
      */
     public function index(Request $request): Response
     {
-        return Inertia::render('Talent/Profile/ProfileIndex', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-        ]);
+        return Inertia::render('Talent/Profile/ProfileIndex', []);
     }
 
     /**
@@ -36,7 +35,6 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -63,32 +61,33 @@ class StudentController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $user = $request->user();
-        $validatedData = $request->validated();
 
-        if ($user->role === 'talent') {
-            $user->name = $validatedData['name'];
-            $user->email = $validatedData['email'];
-            $user->nim = $validatedData['nim'];
-            $user->prodi = $validatedData['prodi'];
-            $user->phone_number = $validatedData['phone_number'];
-            $user->skill = $validatedData['skill'];
+        $request->validate([
+            'nim' => ['required', 'integer'],
+            'prodi' => ['required', 'string'],
+            'phone_number' => ['required', 'integer'],
+            'skill' => ['required', 'string'],
+            'image' => ['required', 'image'],
+        ]);
 
-            if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('profile_images');
-                $user->image = $imagePath;
-            }
-        } else {
-            $user->update($validatedData);
-        }
+        $user = User::findOrFail(Auth::user()->id);
+        $user->update([
+            'name' => $request->name
+        ]);
 
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
-        $user->save();
-
-        return redirect()->route('talentprofile.index');
+        $user->userDetail()->updateOrCreate(
+            [
+                'user_id' => $user->id,
+            ],
+            [
+                'nim' => $request->nim,
+                'prodi' => $request->prodi,
+                'phone_number' => $request->phone_number,
+                'skill' => $request->skill,
+                'image' => $request->image,
+            ]
+        );
+        return redirect()->back()->with('message', 'User Profile Updated');
     }
 
 

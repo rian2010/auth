@@ -5,20 +5,32 @@ import Icon from "@/Images/wallpaper.jpg";
 
 export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
   const user = usePage().props.auth.user;
-  const { data, setData, patch, errors, processing, recentlySuccessful } =
+  const { data, setData, post, errors, processing, recentlySuccessful } =
     useForm({
-      name: user.name,
-      email: user.email,
-      nim: user.nim,
-      phone_number: user.phone_number,
-      prodi: user.prodi,
-      skill: user.skill,
+      nim: user.user_detail?.nim || "",
+      prodi: user.user_detail?.prodi || "",
+      address: user.user_detail?.address || "",
+      phone_number: user.user_detail?.phone_number || "",
+      skill: user.user_detail?.skill || "",
+      image: "",
     });
 
   const submit = (e) => {
     e.preventDefault();
 
-    patch(route("talentprofile.update"));
+    patch(route("talentprofile.update"), {
+      onSuccess: () => {
+        ResetPassword();
+      },
+      data: {
+        nim: data.nim,
+        prodi: data.prodi,
+        address: data.address,
+        phone_number: data.phone_number,
+        skill: data.skill,
+        image: data.image,
+      },
+    });
   };
 
   return (
@@ -49,7 +61,7 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                         </label>
                         <div className="mt-2">
                           <input
-                            value={data.name}
+                            value={user.name}
                             type="text"
                             name="full-name"
                             id="full-name"
@@ -70,7 +82,8 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                             </label>
                             <div className="mt-2">
                               <input
-                                value={data.email}
+                                value={user.email}
+                                disabled
                                 type="text"
                                 name="email"
                                 id="email"
@@ -163,6 +176,49 @@ export default function UpdateProfileTalent(auth, status, mustVerifyEmail) {
                               />
                             </div>
                           </div>
+
+                          <div className="sm:col-span-3">
+                            <label
+                              htmlFor="full-name"
+                              className="block text-sm font-medium leading-6 text-gray-900"
+                            >
+                              Address
+                            </label>
+                            <div className="mt-2">
+                              <input
+                                value={data.address}
+                                type="text"
+                                name="full-name"
+                                id="full-name"
+                                onChange={(e) =>
+                                  setData("address", e.target.value)
+                                }
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                              />
+                            </div>
+                          </div>
+                          {/* <div className="sm:col-span-3">
+                            <label
+                              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              for="file_input"
+                            >
+                              Upload file
+                            </label>
+                            <input
+                              value={data.image}
+                              class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                              aria-describedby="file_input_help"
+                              id="file_input"
+                              type="file"
+                              onChange={(e) => ("image", e.target.value)}
+                            />
+                            <p
+                              class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                              id="file_input_help"
+                            >
+                              SVG, PNG, JPG or GIF (MAX. 800x400px).
+                            </p>
+                          </div> */}
                         </div>
                       </div>
                     </div>

@@ -88,6 +88,10 @@ class VacancyController extends Controller
      */
     public function destroy(Vacancy $vacancy)
     {
-        //
+        $this->authorize('delete', $vacancy);
+
+        $vacancy->delete();
+
+        return redirect(route('vacancy.index'));
     }
 }

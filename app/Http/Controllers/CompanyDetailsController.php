@@ -8,11 +8,10 @@ use Inertia\Inertia;
 
 class CompanyDetailsController extends Controller
 {
-    public function index()
+    public function index($id)
     {
         $company = User::where('role', 'company')
-            ->where('id')
-            ->first();
+            ->find($id); // Retrieve the company with the specified ID
 
         return Inertia::render('LandingPage/CompanyDetails', [
             'company' => $company,
