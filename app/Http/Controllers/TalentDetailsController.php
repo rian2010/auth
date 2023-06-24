@@ -13,39 +13,30 @@ use Inertia\Inertia;
 
 class TalentDetailsController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $talents = User::where('role', 'talent')
+        $talent = User::where('role', 'talent')
+            ->find($id); // Retrieve the company with the specified ID
+
+        $education = Education::where('user_id', $talent->id)
             ->orderByDesc('id')
             ->get();
 
-        $education = [];
-        $achievement = [];
-        $experience = [];
-        $organization = [];
+        $achivement = Achivement::where('user_id', $talent->id)
+            ->with('user:id,name')
+            ->get();
+        $experience = Experience::where('user_id', $talent->id)
+            ->orderByDesc('id')
+            ->get();
+        $organization = Organization::where('user_id', $talent->id)
+            ->orderByDesc('id')
+            ->get();
 
-        foreach ($talents as $talent) {
-            $education[$talent->id] = Education::where('user_id', $talent->id)
-                ->orderByDesc('id')
-                ->get();
-
-            $achievement[$talent->id] = Achivement::where('user_id', $talent->id)
-                ->with('user:id,name')
-                ->get();
-
-            $experience[$talent->id] = Experience::where('user_id', $talent->id)
-                ->orderByDesc('id')
-                ->get();
-
-            $organization[$talent->id] = Organization::where('user_id', $talent->id)
-                ->orderByDesc('id')
-                ->get();
-        }
 
         return Inertia::render('LandingPage/talentprofile', [
-            'talents' => $talents,
+            'talent' => $talent,
             'education' => $education,
-            'achievement' => $achievement,
+            'achivement' => $achivement,
             'experience' => $experience,
             'organization' => $organization
         ]);

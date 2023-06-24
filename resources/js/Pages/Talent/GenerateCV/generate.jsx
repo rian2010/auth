@@ -7,7 +7,9 @@ import Poltek from "@/Images/rename.png";
 import {
   AcademicCapIcon,
   ArrowUturnLeftIcon,
+  BriefcaseIcon,
   TrophyIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/solid";
 
 export default function generate({}) {
@@ -221,8 +223,8 @@ export default function generate({}) {
         <div className="mt-8 md:ml-4 w-11/12 sm:w-10/12 md:w-8/12">
           <div className="bg-white overflow-hidden shadow-lg sm:rounded-lg p-6">
             <h3 className="text-lg font-semibold leading-6 text-gray-900 mb-4 flex items-center">
-              <TrophyIcon className="h-6 w-6 text-gray-500 mr-2" />
-              Achievement
+              <BriefcaseIcon className="h-6 w-6 text-gray-500 mr-2" />
+              Experience
             </h3>
             <div className="p-4">
               <table className="w-full">
@@ -257,8 +259,8 @@ export default function generate({}) {
         <div className="mt-8 md:ml-4 w-11/12 sm:w-10/12 md:w-8/12">
           <div className="bg-white overflow-hidden shadow-lg sm:rounded-lg p-6">
             <h3 className="text-lg font-semibold leading-6 text-gray-900 mb-4 flex items-center">
-              <TrophyIcon className="h-6 w-6 text-gray-500 mr-2" />
-              Achievement
+              <UserGroupIcon className="h-6 w-6 text-gray-500 mr-2" />
+              Organization
             </h3>
             <div className="p-4">
               <table className="w-full">
