@@ -11,7 +11,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import Paginator from "@/Components/Paginator";
 
 export default function Dashboard({ auth, experience, ...props }) {
-  console.log("props: ", props);
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {

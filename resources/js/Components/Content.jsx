@@ -1,8 +1,10 @@
 import {
-  CloudArrowUpIcon,
-  LockClosedIcon,
+  DocumentArrowDownIcon,
   ServerIcon,
+  UserGroupIcon,
+  WifiIcon,
 } from "@heroicons/react/20/solid";
+import Kampus from "@/Images/Kampus.jpg";
 
 export default function Example() {
   return (
@@ -43,15 +45,16 @@ export default function Example() {
           <div className="lg:pr-4">
             <div className="lg:max-w-lg">
               <p className="text-base font-semibold leading-7 text-indigo-600">
-                Deploy faster
+                Welcome to TalentHub - Where Dreams Come to Life!
               </p>
               <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                A better workflow
+                Are You Ready to Shine?
               </h1>
               <p className="mt-6 text-xl leading-8 text-gray-700">
-                Aliquet nec orci mattis amet quisque ullamcorper neque, nibh
-                sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque
-                id at vitae feugiat egestas.
+                TalentHub is your ultimate platform for discovering and
+                nurturing your passion. Showcase your skills, connect with
+                industry professionals, and unlock exciting opportunities
+                tailored to your specific talent.
               </p>
             </div>
           </div>
@@ -59,47 +62,58 @@ export default function Example() {
         <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
           <img
             className="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
-            src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+            src={Kampus}
             alt=""
           />
         </div>
         <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
           <div className="lg:pr-4">
             <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
-              <p>
-                Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget
-                risus enim. Mattis mauris semper sed amet vitae sed turpis id.
-                Id dolor praesent donec est. Odio penatibus risus viverra tellus
-                varius sit neque erat velit. Faucibus commodo massa rhoncus,
-                volutpat. Dignissim sed eget risus enim. Mattis mauris semper
-                sed amet vitae sed turpis id.
-              </p>
               <ul role="list" className="mt-8 space-y-8 text-gray-600">
                 <li className="flex gap-x-3">
-                  <CloudArrowUpIcon
+                  <DocumentArrowDownIcon
                     className="mt-1 h-5 w-5 flex-none text-indigo-600"
                     aria-hidden="true"
                   />
                   <span>
                     <strong className="font-semibold text-gray-900">
-                      Push to deploy.
-                    </strong>{" "}
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Maiores impedit perferendis suscipit eaque, iste dolor
-                    cupiditate blanditiis ratione.
+                      Create Your Portfolio.
+                    </strong>
+                    Build a stunning portfolio that captures the essence of your
+                    talent. Showcase your best works, performances, or projects,
+                    and let your creativity speak for itself.
                   </span>
                 </li>
                 <li className="flex gap-x-3">
-                  <LockClosedIcon
+                  <WifiIcon
                     className="mt-1 h-5 w-5 flex-none text-indigo-600"
                     aria-hidden="true"
                   />
                   <span>
                     <strong className="font-semibold text-gray-900">
-                      SSL certificates.
+                      Connect with Industry Professionals.
                     </strong>{" "}
-                    Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure
-                    qui lorem cupidatat commodo.
+                    TalentHub connects you with a vast network of industry
+                    professionals, including agents, casting directors,
+                    producers, and mentors. Our platform acts as a bridge,
+                    enabling you to reach the right people and unlock thrilling
+                    opportunities.
+                  </span>
+                </li>
+
+                <li className="flex gap-x-3">
+                  <UserGroupIcon
+                    className="mt-1 h-5 w-5 flex-none text-indigo-600"
+                    aria-hidden="true"
+                  />
+                  <span>
+                    <strong className="font-semibold text-gray-900">
+                      Expert Guidance and Resources.
+                    </strong>{" "}
+                    Access a wealth of expert advice, educational resources, and
+                    workshops designed to enhance your skills and broaden your
+                    horizons. From industry insights to career development tips,
+                    we've got you covered.
                   </span>
                 </li>
                 <li className="flex gap-x-3">
@@ -109,30 +123,19 @@ export default function Example() {
                   />
                   <span>
                     <strong className="font-semibold text-gray-900">
-                      Database backups.
+                      Talent Showcases and Events.
                     </strong>{" "}
-                    Ac tincidunt sapien vehicula erat auctor pellentesque
-                    rhoncus. Et magna sit morbi lobortis.
+                    Participate in talent showcases and exclusive events
+                    organized by TalentHub. These opportunities allow you to
+                    perform in front of a wider audience, gain exposure, and
+                    make meaningful connections.
                   </span>
                 </li>
               </ul>
               <p className="mt-8">
-                Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis
-                odio id et. Id blandit molestie auctor fermentum dignissim.
-                Lacus diam tincidunt ac cursus in vel. Mauris varius vulputate
-                et ultrices hac adipiscing egestas. Iaculis convallis ac tempor
-                et ut. Ac lorem vel integer orci.
-              </p>
-              <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">
-                No server? No problem.
-              </h2>
-              <p className="mt-6">
-                Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam
-                consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod
-                vitae interdum mauris enim, consequat vulputate nibh. Maecenas
-                pellentesque id sed tellus mauris, ultrices mauris. Tincidunt
-                enim cursus ridiculus mi. Pellentesque nam sed nullam sed diam
-                turpis ipsum eu a sed convallis diam.
+                Your journey to success starts here. Join TalentHub today and
+                unlock your full potential. Embrace the spotlight, unleash your
+                talent, and let us help you turn your dreams into reality.
               </p>
             </div>
           </div>

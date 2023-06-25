@@ -3,7 +3,6 @@ import { Head, Link } from "@inertiajs/react";
 import UserDashboardLayout from "@/Layouts/UserDashboardLayout";
 import Profile from "@/Images/wallpaper.jpg";
 import { AcademicCapIcon } from "@heroicons/react/24/solid";
-import Education from "@/Components/TalentComponent/EducationIndex";
 import Icon from "@/Images/icon.png";
 import Kampus from "@/Images/Kampus.jpg";
 
@@ -104,7 +103,6 @@ export default function Dashboard({ auth, education, ...props }) {
               </Link>
             </div>
           </div>
-          {/* <Education education={education} /> */}
         </div>
       </div>
     </UserDashboardLayout>

@@ -9,8 +9,7 @@ import {
 import "react-datepicker/dist/react-datepicker.css";
 import Paginator from "@/Components/Paginator";
 
-export default function Dashboard({ auth, organization, ...props }) {
-  console.log("props: ", props);
+export default function Dashboard({ auth, organization }) {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ export default function Dashboard({ auth, organization, ...props }) {
       user={auth.user}
       header={
         <h2 className="font-semibold text-xl text-white leading-tight">
-          Experience
+          Organization
         </h2>
       }
     >

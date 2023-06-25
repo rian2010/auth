@@ -1,9 +1,10 @@
 import React from "react";
 import LandingPageLayout from "@/Layouts/LandingPageLayout";
 import Hero from "@/Components/Hero";
-import Navbar from "@/Components/Navbar";
 import { Head } from "@inertiajs/react";
 import Content from "@/Components/Content";
+import AboutUs from "@/Components/AboutUs";
+import FAQ from "@/Components/faq";
 
 export default function Landing(props) {
   return (
@@ -13,6 +14,10 @@ export default function Landing(props) {
         <Hero />
 
         <Content />
+
+        <AboutUs />
+
+        <FAQ />
       </LandingPageLayout>
     </div>
   );
