@@ -13,6 +13,7 @@ export default function Hero() {
             Facilities for Entrepreneurship Development Programs and Skill
             Enhancement Training tailored to industry needs
           </p>
+
           <div className="flex items-center space-x-4">
             <a
               href={route("login")}

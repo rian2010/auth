@@ -1,6 +1,9 @@
 import { Head, Link, useForm } from "@inertiajs/react";
 import UserDashboardLayout from "@/Layouts/UserDashboardLayout";
 import { BriefcaseIcon } from "@heroicons/react/24/solid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import InputError from "@/Components/InputError";
 
 export default function Dashboard({ auth }) {
   const { data, setData, post, processing, reset, errors } = useForm({
@@ -16,6 +19,7 @@ export default function Dashboard({ auth }) {
   const submit = (e) => {
     e.preventDefault();
     post(route("experience.store"), { onSuccess: () => reset() });
+    toast.success("Data saved successfully!");
   };
 
   return (
@@ -28,6 +32,8 @@ export default function Dashboard({ auth }) {
       }
     >
       <Head title="Dashboard" />
+
+      <ToastContainer />
 
       <div className="py-6">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -58,6 +64,7 @@ export default function Dashboard({ auth }) {
                       onChange={(e) => setData("jobdesk", e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <InputError message={errors.jobdesk} className="mt-2" />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
@@ -76,6 +83,7 @@ export default function Dashboard({ auth }) {
                       onChange={(e) => setData("type", e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <InputError message={errors.type} className="mt-2" />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
@@ -94,6 +102,7 @@ export default function Dashboard({ auth }) {
                       onChange={(e) => setData("year_start", e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <InputError message={errors.year_start} className="mt-2" />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
@@ -112,6 +121,7 @@ export default function Dashboard({ auth }) {
                       onChange={(e) => setData("year_end", e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <InputError message={errors.year_end} className="mt-2" />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
@@ -130,6 +140,7 @@ export default function Dashboard({ auth }) {
                       onChange={(e) => setData("company", e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <InputError message={errors.company} className="mt-2" />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
@@ -148,6 +159,7 @@ export default function Dashboard({ auth }) {
                       onChange={(e) => setData("position", e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <InputError message={errors.position} className="mt-2" />
                   </div>
                 </div>
                 <div className="sm:col-span-6 flex justify-center">
@@ -167,10 +179,11 @@ export default function Dashboard({ auth }) {
                         onChange={(e) => setData("address", e.target.value)}
                         className="block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm h-20"
                       />
+                      <InputError message={errors.address} className="mt-2" />
                     </div>
                   </div>
                 </div>
-                <div className="mt-6 flex items-center justify-end gap-x-6">
+                <div className="mt-6 flex items-center justify-end gap-x-6 sm:col-span-6">
                   <Link
                     href={route("experience.index")}
                     className="text-sm font-semibold leading-6 text-gray-900"

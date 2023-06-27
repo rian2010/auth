@@ -1,6 +1,8 @@
 import InputError from "@/Components/InputError";
 import UserDashboardLayout from "@/Layouts/UserDashboardLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Dashboard({ auth }) {
   const { data, setData, post, processing, reset, errors } = useForm({
@@ -14,6 +16,7 @@ export default function Dashboard({ auth }) {
   const submit = (e) => {
     e.preventDefault();
     post(route("organization.store"), { onSuccess: () => reset() });
+    toast.success("Data saved successfully!");
   };
 
   return (
@@ -26,6 +29,7 @@ export default function Dashboard({ auth }) {
       }
     >
       <Head title="Dashboard" />
+      <ToastContainer />
 
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">

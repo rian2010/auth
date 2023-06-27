@@ -41,7 +41,7 @@ export default function Dashboard({ auth, vacancy, ...props }) {
       }
     >
       <Head title="Dashboard" />
-      <div className=" flex items-end">
+      <div className="flex items-end justify-end ">
         <button
           className="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white"
           onClick={handleAddClick}
@@ -50,6 +50,7 @@ export default function Dashboard({ auth, vacancy, ...props }) {
           Add
         </button>
       </div>
+
       <div className="flex justify-end py-12 pr-4">
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {vacancy.data.map((item) => (
@@ -169,15 +170,6 @@ export default function Dashboard({ auth, vacancy, ...props }) {
               </div>
             </div>
             <div className="flex justify-end mt-4">
-              <Link
-                href={route("vacancy.destroy", { id: selectedVacancy.id })}
-                method="delete"
-              >
-                <button className="btn btn-error btn-sm mr-2">
-                  <TrashIcon className="w-4 h-4 text-white-500 mr-1" />
-                  Delete
-                </button>
-              </Link>
               <button
                 className="btn btn-primary btn-sm mr-2"
                 onClick={() => setShowModal(false)}

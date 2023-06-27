@@ -1,5 +1,8 @@
 import { Head, Link, useForm } from "@inertiajs/react";
 import CompanyDashboardLayout from "@/Layouts/CompanyDashboardLayout";
+import InputError from "@/Components/InputError";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Dashboard({ auth }) {
   const { data, setData, post, processing, reset, errors } = useForm({
@@ -16,6 +19,7 @@ export default function Dashboard({ auth }) {
   const submit = (e) => {
     e.preventDefault();
     post(route("vacancy.store"), { onSuccess: () => reset() });
+    toast.success("Data saved successfully!");
   };
 
   return (
@@ -28,6 +32,7 @@ export default function Dashboard({ auth }) {
       }
     >
       <Head title="Dashboard" />
+      <ToastContainer />
 
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 p-6">
@@ -56,6 +61,10 @@ export default function Dashboard({ auth }) {
                           onChange={(e) => setData("position", e.target.value)}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
+                        <InputError
+                          message={errors.position}
+                          className="mt-2"
+                        />
                       </div>
                     </div>
 
@@ -75,6 +84,7 @@ export default function Dashboard({ auth }) {
                           onChange={(e) => setData("salary", e.target.value)}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
+                        <InputError message={errors.salary} className="mt-2" />
                       </div>
                     </div>
                     <div className="sm:col-span-2">
@@ -95,6 +105,10 @@ export default function Dashboard({ auth }) {
                           }
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
+                        <InputError
+                          message={errors.registration_duration}
+                          className="mt-2"
+                        />
                       </div>
                     </div>
                     <div className="sm:col-span-3">
@@ -112,6 +126,10 @@ export default function Dashboard({ auth }) {
                           id="job-offer"
                           onChange={(e) => setData("job_offer", e.target.value)}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                        <InputError
+                          message={errors.job_offer}
+                          className="mt-2"
                         />
                       </div>
                     </div>
@@ -132,6 +150,10 @@ export default function Dashboard({ auth }) {
                             setData("experience_level", e.target.value)
                           }
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                        <InputError
+                          message={errors.experience_level}
+                          className="mt-2"
                         />
                       </div>
                     </div>
@@ -155,6 +177,10 @@ export default function Dashboard({ auth }) {
                           }
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
+                        <InputError
+                          message={errors.placement_location}
+                          className="mt-2"
+                        />
                       </div>
                     </div>
                     <div className="col-span-full">
@@ -172,6 +198,10 @@ export default function Dashboard({ auth }) {
                           rows={6}
                           onChange={(e) => setData("job_desk", e.target.value)}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                        <InputError
+                          message={errors.job_desk}
+                          className="mt-2"
                         />
                       </div>
                       <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -195,6 +225,10 @@ export default function Dashboard({ auth }) {
                             setData("requirement", e.target.value)
                           }
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                        <InputError
+                          message={errors.requirement}
+                          className="mt-2"
                         />
                       </div>
                       <p className="mt-3 text-sm leading-6 text-gray-600">

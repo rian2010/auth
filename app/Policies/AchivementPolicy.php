@@ -6,7 +6,7 @@ use App\Models\Achivement;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class AchievmentPolicy
+class AchivementPolicy
 {
     /**
      * Determine whether the user can view any models.

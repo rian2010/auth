@@ -156,7 +156,7 @@ export default function Dashboard({ auth, props }) {
               </div>
               <div className="mt-6 flex items-center justify-end gap-x-6">
                 <Link
-                  href="/education"
+                  href={route("education.index")}
                   className="text-sm font-semibold leading-6 text-gray-900"
                 >
                   Back

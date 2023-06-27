@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
@@ -183,18 +182,34 @@ export default function Authenticated({ user, header, children }) {
             >
               Dashboard
             </ResponsiveNavLink>
+            <ResponsiveNavLink
+              href={route("education.index")}
+              active={route().current("education.index")}
+            >
+              Education
+            </ResponsiveNavLink>
+            <ResponsiveNavLink
+              href={route("achivement.index")}
+              active={route().current("achivement.index")}
+            >
+              Achievement
+            </ResponsiveNavLink>
+            <ResponsiveNavLink
+              href={route("achivement.index")}
+              active={route().current("achivement.index")}
+            >
+              Experience
+            </ResponsiveNavLink>
+
+            <ResponsiveNavLink
+              href={route("organization.index")}
+              active={route().current("organization.index")}
+            >
+              Organization
+            </ResponsiveNavLink>
           </div>
 
           <div className="pt-4 pb-1 border-t border-gray-200">
-            <div className="px-4">
-              <div className="font-medium text-base text-gray-800">
-                {user.name}
-              </div>
-              <div className="font-medium text-sm text-gray-500">
-                {user.email}
-              </div>
-            </div>
-
             <div className="mt-3 space-y-1">
               <ResponsiveNavLink href={route("talentprofile.index")}>
                 Settings

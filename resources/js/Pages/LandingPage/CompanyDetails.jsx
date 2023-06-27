@@ -132,7 +132,7 @@ export default function Landing() {
 
                     <div className="space-y-6">
                       <p className="text-base text-gray-900">
-                        [Company Name] is a leading innovator in
+                        {company.name} is a leading innovator in
                         [industry/market], delivering exceptional
                         [products/services] to clients worldwide. With a
                         relentless commitment to quality, customer-centricity,

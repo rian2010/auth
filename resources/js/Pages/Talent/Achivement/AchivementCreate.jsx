@@ -1,6 +1,9 @@
+import InputError from "@/Components/InputError";
 import UserDashboardLayout from "@/Layouts/UserDashboardLayout";
 import { TrophyIcon } from "@heroicons/react/24/solid";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Dashboard({ auth }) {
   const { data, setData, post, processing, reset, errors } = useForm({
@@ -12,6 +15,7 @@ export default function Dashboard({ auth }) {
   const submit = (e) => {
     e.preventDefault();
     post(route("achivement.store"), { onSuccess: () => reset() });
+    toast.success("Data saved successfully!");
   };
 
   return (
@@ -24,6 +28,7 @@ export default function Dashboard({ auth }) {
       }
     >
       <Head title="Dashboard" />
+      <ToastContainer />
 
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -55,6 +60,7 @@ export default function Dashboard({ auth }) {
                       onChange={(e) => setData("position", e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <InputError message={errors.position} className="mt-2" />
                   </div>
                 </div>
 
@@ -77,6 +83,10 @@ export default function Dashboard({ auth }) {
                       }
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <InputError
+                      message={errors.achivement_date}
+                      className="mt-2"
+                    />
                   </div>
                 </div>
                 <div className="sm:col-span-3">
@@ -96,6 +106,7 @@ export default function Dashboard({ auth }) {
                       onChange={(e) => setData("description", e.target.value)}
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
+                    <InputError message={errors.description} className="mt-2" />
                   </div>
                 </div>
 
