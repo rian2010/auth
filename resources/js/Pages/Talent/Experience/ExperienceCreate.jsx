@@ -18,8 +18,30 @@ export default function Dashboard({ auth }) {
 
   const submit = (e) => {
     e.preventDefault();
+
+    if (!inputIsValid()) {
+      toast.error("Data failed to save. Please fill in all the fields.");
+      return;
+    }
+
     post(route("experience.store"), { onSuccess: () => reset() });
     toast.success("Data saved successfully!");
+  };
+
+  const inputIsValid = () => {
+    if (
+      !data.jobdesk ||
+      !data.type ||
+      !data.year_start ||
+      !data.year_end ||
+      !data.address ||
+      !data.company ||
+      !data.position
+    ) {
+      return false;
+    }
+
+    return true;
   };
 
   return (
@@ -27,7 +49,7 @@ export default function Dashboard({ auth }) {
       user={auth.user}
       header={
         <h2 className="font-semibold text-xl text-white leading-tight">
-          Dashboard
+          Experience
         </h2>
       }
     >

@@ -15,8 +15,28 @@ export default function Dashboard({ auth }) {
 
   const submit = (e) => {
     e.preventDefault();
+
+    if (!inputIsValid()) {
+      toast.error("Data failed to save. Please fill in all the fields.");
+      return;
+    }
+
     post(route("organization.store"), { onSuccess: () => reset() });
     toast.success("Data saved successfully!");
+  };
+
+  const inputIsValid = () => {
+    if (
+      !data.name_organization ||
+      !data.year_start ||
+      !data.year_end ||
+      !data.title ||
+      !data.description_experience
+    ) {
+      return false;
+    }
+
+    return true;
   };
 
   return (

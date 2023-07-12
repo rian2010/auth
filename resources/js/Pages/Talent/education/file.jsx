@@ -16,11 +16,29 @@ export default function Dashboard({ auth, props }) {
 
   const submit = (e) => {
     e.preventDefault();
+
+    if (!inputIsValid()) {
+      toast.error("Data failed to save. Please fill in all the fields.");
+      return;
+    }
+
     post(route("education.store"), { onSuccess: () => reset() });
     toast.success("Data saved successfully!");
   };
 
-  console.log("props last:", props);
+  const inputIsValid = () => {
+    if (
+      !data.mark ||
+      !data.major ||
+      !data.year_start ||
+      !data.year_end ||
+      !data.last_education
+    ) {
+      return false;
+    }
+
+    return true;
+  };
 
   return (
     <UserDashboardLayout

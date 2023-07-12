@@ -14,8 +14,22 @@ export default function Dashboard({ auth }) {
 
   const submit = (e) => {
     e.preventDefault();
+
+    if (!inputIsValid()) {
+      toast.error("Data failed to save. Please fill in all the fields.");
+      return;
+    }
+
     post(route("achivement.store"), { onSuccess: () => reset() });
     toast.success("Data saved successfully!");
+  };
+
+  const inputIsValid = () => {
+    if (!data.description || !data.position || !data.achivement_date) {
+      return false;
+    }
+
+    return true;
   };
 
   return (

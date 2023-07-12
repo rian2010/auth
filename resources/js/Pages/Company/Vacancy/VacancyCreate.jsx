@@ -18,8 +18,31 @@ export default function Dashboard({ auth }) {
 
   const submit = (e) => {
     e.preventDefault();
+
+    if (!inputIsValid()) {
+      toast.error("Data failed to save. Please fill in all the fields.");
+      return;
+    }
+
     post(route("vacancy.store"), { onSuccess: () => reset() });
     toast.success("Data saved successfully!");
+  };
+
+  const inputIsValid = () => {
+    if (
+      !data.position ||
+      !data.salary ||
+      !data.registration_duration ||
+      !data.job_offer ||
+      !data.experience_level ||
+      !data.placement_location ||
+      !data.job_desk ||
+      !data.requirement
+    ) {
+      return false;
+    }
+
+    return true;
   };
 
   return (
