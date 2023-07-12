@@ -7,7 +7,23 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Fitur
+
+BACKEND
+
+-   [x] Autentikasi
+-   [x] Aktor & Izin akses
+-   [x] Talent dapat membuat CV dan dapat melihat lowongan yang tersedia
+-   [x] Company dapat melihat Talent dan dapat membuat lowongan pekerjaan
+-   [x] Disisi backend mengecek user apakah username dan password masih sama, jika iya akan mengeluarkan info untuk "Ganti Password"
+
+FRONTEND
+
+-   [x] Halaman pertama website ini yaitu Halaman landing page menampilkan apa itu Talenthub
+-   [x] Halaman utama memiliki menu navigasi yang terdapat diantaranya Home, Vacancy, Talent dan Company
+-   [x] Company tidak dapat melihat profile Talent jika user Company tidak terauntentikasi/belum login
+-   [x] Menampilkan list dan detail lowongan yang tersedia
+-   [x] Menampilkan Talent beserta profile yang tersedia pada halaman Talent
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 

@@ -93,7 +93,7 @@ export default function Dashboard({ auth, vacancy, ...props }) {
 
       {showModal && selectedVacancy && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded-md w-8/12">
+          <div className="bg-white p-4 rounded-md w-8/12 h-4/5 overflow-y-auto">
             <h2 className="text-lg font-semibold mb-4 text-center flex items-center justify-center">
               <BriefcaseIcon className="w-6 h-6 mr-2" />
               Vacancy Details
@@ -160,10 +160,30 @@ export default function Dashboard({ auth, vacancy, ...props }) {
                   </div>
                   <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                     <dt className="text-sm font-medium leading-6 text-gray-900">
+                      Job Desk
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                      <ul>
+                        {selectedVacancy.job_desk
+                          .split("\n")
+                          .map((item, index) => (
+                            <li key={index}>{item}</li>
+                          ))}
+                      </ul>
+                    </dd>
+                  </div>
+                  <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                    <dt className="text-sm font-medium leading-6 text-gray-900">
                       Requirement
                     </dt>
                     <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                      {selectedVacancy.requirement}
+                      <ul>
+                        {selectedVacancy.requirement
+                          .split("\n")
+                          .map((item, index) => (
+                            <li key={index}>{item}</li>
+                          ))}
+                      </ul>
                     </dd>
                   </div>
                 </dl>
