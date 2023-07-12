@@ -37,11 +37,11 @@ Sebelum menggunakan projek ini, diperlukanya:
 
 1. Unduh/Clone proyek ini
     ```git
-    git clone https://github.com/vonsogt/pinjam-ruang.git
+    git clone https://github.com/rian2010/auth.git
     ```
-2. Lalu pindah ke direktori `pinjam-ruang`
+2. Lalu pindah ke direktori `auth`
     ```sh
-    cd pinjam-ruang
+    cd auth
     ```
 3. Install komponen yang diperlukan menggunakan composer
     ```sh
