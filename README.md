@@ -21,6 +21,17 @@ FRONTEND
 -   [x] Menampilkan list dan detail lowongan yang tersedia
 -   [x] Menampilkan Talent beserta profile yang tersedia pada halaman Talent
 
+## Libary yang digunakan
+
+-   [x] TailwindCSS
+-   [x] Inertia JS
+-   [x] Hero Icons
+-   [x] DaisyUi
+-   [x] Flowbite
+-   [x] React Toastify
+-   [x] Framer-motion
+-   [x] Laravel Breeze untuk autentikasi
+
 ## Mulai
 
 Sebelum melakukan instalasi proyek `talenthub` ada baiknya perhatikan hal-hal berikut ini:
@@ -45,24 +56,36 @@ Sebelum menggunakan projek ini, diperlukanya:
     ```
 3. Install komponen yang diperlukan menggunakan composer
     ```sh
-    composer install
+    composer install / composer update
     ```
-4. Copy file `.env.example` menjadi `.env`
+4. Install depedency yang akan digunakan untuk frontend
+
+    ```sh
+    npm install
+    ```
+
+5. Copy file `.env.example` menjadi `.env`
     ```sh
     cp .env.example .env
     ```
-5. Lalu generate `APP_KEY`
+6. Lalu generate `APP_KEY`
     ```sh
     php artisan key:generate
     ```
-6. Lalu lakukan migrasi database dan query
+7. Lalu lakukan migrasi database dan query
     ```sh
     php artisan migrate:fresh --seed
     ```
-7. Setelah berhasil, jalankan aplikasi
+8. Setelah berhasil, jalankan perintah berikut untuk backend
     ```sh
     php artisan serve
     ```
-8. Lalu buka browser `127.0.0.1:8000` untuk menggunakan aplikasi
+9. Jalankan perintah berikut untuk merender FrontEnd
+
+    ```sh
+    npm run dev
+    ```
+
+10. Lalu buka browser `127.0.0.1:8000` untuk menggunakan aplikasi
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
