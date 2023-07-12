@@ -23,7 +23,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 ## Mulai
 
-Sebelum melakukan instalasi proyek `pinjam-ruang` ada baiknya perhatikan hal-hal berikut ini:
+Sebelum melakukan instalasi proyek `talenthub` ada baiknya perhatikan hal-hal berikut ini:
 
 ### Prasyarat
 
