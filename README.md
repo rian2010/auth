@@ -55,7 +55,7 @@ Sebelum menggunakan projek ini, diperlukanya:
     ```sh
     php artisan key:generate
     ```
-6. Lalu lakukan migrasi database dan query (isi database dari Polibatam)
+6. Lalu lakukan migrasi database dan query
     ```sh
     php artisan migrate:fresh --seed
     ```
