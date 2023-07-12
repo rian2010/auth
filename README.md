@@ -1,9 +1,7 @@
 ## Gambar
 
-Frontend:
-![image](https://user-images.githubusercontent.com/35516476/129226360-d8185ae7-9163-4d04-a6d8-44df18e28704.png)
-Backend:
-![image](https://user-images.githubusercontent.com/35516476/129230321-60cd0f5c-d4ce-450b-a96a-e16411b358df.png)
+Tampilan:
+![image](https://github.com/rian2010/auth/assets/122286923/83512e36-3cd9-49be-836f-fb4359cd5ed8)
 
 ## Fitur
 
