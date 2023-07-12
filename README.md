@@ -72,15 +72,15 @@ Sebelum menggunakan projek ini, diperlukanya:
     ```sh
     php artisan key:generate
     ```
-7. Lalu lakukan migrasi database dan query
+7. Lalu lakukan migrasi database
     ```sh
-    php artisan migrate:fresh --seed
+    php artisan migrate
     ```
-8. Setelah berhasil, jalankan perintah berikut untuk backend
+8. Setelah berhasil, jalankan perintah berikut untuk menjalankan serve side
     ```sh
     php artisan serve
     ```
-9. Jalankan perintah berikut untuk merender FrontEnd
+9. Jalankan perintah berikut untuk client side
 
     ```sh
     npm run dev
